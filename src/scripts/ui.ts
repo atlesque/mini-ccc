@@ -19,6 +19,13 @@ function writeFavorites(favorites: Set<string>) {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
 }
 
+function getFavoriteTitles(favorites = readFavorites()) {
+  return [...document.querySelectorAll<HTMLElement>('[data-project-card]')]
+    .filter((card) => favorites.has(card.dataset.projectId ?? ''))
+    .map((card) => card.dataset.projectTitle?.trim() ?? '')
+    .filter(Boolean);
+}
+
 let toastTimer: number | undefined;
 
 function showToast(message: string) {
@@ -78,6 +85,26 @@ function applyFilters() {
   if (count) count.textContent = `${visible} ${visible === 1 ? 'build' : 'builds'}`;
   const empty = document.querySelector<HTMLElement>('[data-projects-empty]');
   if (empty) empty.hidden = visible > 0;
+
+  const exportPanel = document.querySelector<HTMLElement>('[data-favorite-export-panel]');
+  const exportButton = document.querySelector<HTMLButtonElement>('[data-favorite-export]');
+  if (exportPanel) exportPanel.hidden = active !== 'favorites';
+  if (exportButton) exportButton.disabled = getFavoriteTitles(favorites).length === 0;
+}
+
+function exportFavoriteTitles() {
+  const titles = getFavoriteTitles();
+  const content = titles.length > 0 ? `${titles.join('\n')}\n` : '';
+  const file = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(file);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'mini-ccc-favorites.txt';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
+  showToast(`${titles.length} ${titles.length === 1 ? 'saved title' : 'saved titles'} exported`);
 }
 
 function readThemePreference(): ThemePreference {
@@ -133,6 +160,12 @@ document.addEventListener('click', (event) => {
   if (themeButton) {
     const current = document.documentElement.dataset.themePreference as ThemePreference;
     setThemePreference(themePreferences.includes(current) ? nextThemePreference(current) : 'auto');
+  }
+
+  const exportButton = target?.closest<HTMLButtonElement>('[data-favorite-export]');
+  if (exportButton) {
+    exportFavoriteTitles();
+    return;
   }
 
   const filterButton = target?.closest<HTMLButtonElement>('[data-filter-button]');

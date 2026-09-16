@@ -38,6 +38,11 @@ const orderedProjects = [...projects].sort((a, b) => b.votes - a.votes);
         <div class="project-grid" data-project-grid>
           {orderedProjects.map((project) => <ProjectCard project={project} />)}
         </div>
+        <div class="favorite-export" data-favorite-export-panel hidden>
+          <button class="button favorite-export__button" type="button" data-favorite-export disabled>
+            Export saved titles <span aria-hidden="true">↓</span>
+          </button>
+        </div>
         <div class="projects-empty" data-projects-empty hidden>
           <ProjectViz visual="radar" accent="lime" />
           <h3>No builds on this frequency.</h3>
