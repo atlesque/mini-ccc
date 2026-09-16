@@ -2,57 +2,66 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import BrandMark from '../components/BrandMark.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import ProjectViz from '../components/ProjectViz.astro';
-import { projects } from '../data/projects';
 
-const orderedProjects = [...projects].sort((a, b) => b.votes - a.votes);
+const palette = [
+  { id: 'cocktails', label: 'Cocktail making', short: 'COCKTAILS', accent: 'orange' },
+  { id: 'youtube', label: 'YouTube videos', short: 'YOUTUBE', accent: 'blue' },
+  { id: 'lockpicking', label: 'Lock picking', short: 'LOCK PICKING', accent: 'pink' },
+  { id: 'diy-one', label: 'DIY project 1', short: 'DIY 01', accent: 'lime' },
+  { id: 'diy-two', label: 'DIY project 2', short: 'DIY 02', accent: 'lime' },
+];
+
+const defaultBlocks = [
+  { ...palette[0], start: 0, duration: 1 },
+  { ...palette[1], start: 1, duration: 3 },
+  { ...palette[2], start: 6, duration: 2 },
+  { ...palette[3], start: 8, duration: 8 },
+  { ...palette[4], start: 16, duration: 8 },
+];
+
+const times = Array.from({ length: 25 }, (_, index) => {
+  const totalMinutes = 10 * 60 + index * 30;
+  return `${String(Math.floor(totalMinutes / 60)).padStart(2, '0')}:${String(totalMinutes % 60).padStart(2, '0')}`;
+});
 ---
-<BaseLayout description="Mini CCC is a tiny home hacker conference for friends, prototypes, and wonderfully unnecessary electronics.">
+<BaseLayout title="Schedule" description="Build a tiny, highly adjustable day for Mini CCC.">
   <div class="page-shell">
     <Header />
-
     <main>
-      <section class="builds-section section-pad" id="builds">
-        <div class="section-heading">
-          <h1>The build list</h1>
+      <section class="schedule-section section-pad">
+        <div class="schedule-heading">
+          <div><p class="eyebrow"><span class="eyebrow-marker">THE RUN OF SHOW</span> mini CCC / make a day of it</p><h1>Make room for<br /><em>good ideas.</em></h1></div>
+          <p class="schedule-lede">A loose agenda for a very full day. Drag the blocks around, stretch the good bits, and leave a little room for lunch.</p>
         </div>
-
-        <div class="catalog-controls">
-          <label class="search-field">
-            <span aria-hidden="true">⌕</span>
-            <input type="search" placeholder="Search the catalogue" aria-label="Search the catalogue" data-project-search />
-          </label>
-          <div class="filter-group" role="group" aria-label="Filter projects">
-            <button type="button" class="filter-button is-active" data-filter-button data-filter="all">All builds</button>
-            <button type="button" class="filter-button" data-filter-button data-filter="play">Play</button>
-            <button type="button" class="filter-button" data-filter-button data-filter="glow">Glow</button>
-            <button type="button" class="filter-button" data-filter-button data-filter="signal">Signal</button>
-            <button type="button" class="filter-button" data-filter-button data-filter="sound">Sound</button>
-            <button type="button" class="filter-button" data-filter-button data-filter="sensor">Sensors</button>
-            <button type="button" class="filter-button filter-button--saved" data-filter-button data-filter="favorites">♡ Saved</button>
-          </div>
-          <span class="catalog-count" data-project-count>{projects.length} builds</span>
-        </div>
-
-        <div class="project-grid" data-project-grid>
-          {orderedProjects.map((project) => <ProjectCard project={project} />)}
-        </div>
-        <div class="favorite-export" data-favorite-export-panel hidden>
-          <button class="button favorite-export__button" type="button" data-favorite-export disabled>
-            Export saved titles <span aria-hidden="true">↓</span>
-          </button>
-        </div>
-        <div class="projects-empty" data-projects-empty hidden>
-          <ProjectViz visual="radar" accent="lime" />
-          <h3>No builds on this frequency.</h3>
-          <p>Try another search, or save a few builds to start your shortlist.</p>
+        <div class="schedule-layout">
+          <aside class="schedule-palette" aria-label="Available schedule blocks">
+            <div class="schedule-panel-heading"><span>AVAILABLE BLOCKS</span><span>DRAG TO ADD</span></div>
+            <div class="palette-list" data-schedule-tray>
+              {palette.map((block) => <div class:list={['palette-block', `accent-${block.accent}`]} draggable="true" data-palette-block data-block-id={block.id} data-label={block.label}><span class="palette-block__dot"></span><span>{block.label}</span><span class="palette-block__grip" aria-hidden="true">⠿</span></div>)}
+            </div>
+            <div class="schedule-help"><span class="schedule-help__mark">↕</span><p>Drop into the grid. Drag the lower edge to resize. Blocks stay on the half-hour and can never overlap.</p></div>
+            <div class="schedule-palette__foot"><span>10:00—22:00 / LOCAL AGENDA</span><span>MAX 04:00</span></div>
+          </aside>
+          <section class="schedule-editor" aria-label="Editable schedule">
+            <div class="schedule-editor__topline"><div><span class="schedule-status-dot"></span><span data-schedule-status>DEFAULT AGENDA</span></div><span>5 BLOCKS / 24 SLOTS</span></div>
+            <div class="schedule-calendar">
+              <div class="schedule-times" aria-hidden="true">{times.slice(0, -1).map((time, index) => <span style={`--time-row: ${index + 1}`}>{time}</span>)}</div>
+              <div class="schedule-grid" data-schedule-grid data-slot-count="24" style="--slot-count: 24">
+                <div class="schedule-lunch" style="--start: 4; --span: 2"><span>LUNCH / OPEN TIME</span></div>
+                {defaultBlocks.map((block) => <div class:list={['schedule-block', `accent-${block.accent}`]} draggable="true" data-schedule-block data-block-id={block.id} data-label={block.label} data-start={block.start} data-duration={block.duration} style={`--start: ${block.start}; --span: ${block.duration}`}>
+                  <span class="schedule-block__handle schedule-block__handle--top" data-resize="top" aria-hidden="true"></span>
+                  <div class="schedule-block__body"><span class="schedule-block__time">{times[block.start]}—{times[block.start + block.duration]}</span><strong>{block.label}</strong></div>
+                  <button type="button" class="schedule-block__remove" data-remove-schedule-block aria-label={`Remove ${block.label}`}>×</button>
+                  <span class="schedule-block__handle schedule-block__handle--bottom" data-resize="bottom" aria-hidden="true"></span>
+                </div>)}
+                <div class="schedule-drop-hint" data-schedule-drop-hint>DROP A BLOCK<br /><span>ON A HALF-HOUR</span></div>
+              </div>
+            </div>
+            <div class="schedule-editor__actions"><button class="button button--primary" type="button" data-save-schedule>Save agenda <span aria-hidden="true">↓</span></button><button class="button" type="button" data-export-schedule>Export .txt <span aria-hidden="true">↗</span></button><button class="text-button" type="button" data-reset-schedule>Reset default</button></div>
+          </section>
         </div>
       </section>
-
-      <footer class="site-footer section-pad">
-        <div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div>
-      </footer>
+      <footer class="site-footer section-pad"><div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div><span class="footer-note">A tiny conference for big enough ideas.</span></footer>
     </main>
   </div>
 </BaseLayout>

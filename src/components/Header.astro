@@ -1,11 +1,26 @@
 ---
 import BrandMark from './BrandMark.astro';
+
+const currentPath = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Schedule' },
+  { href: '/builds', label: 'Builds' },
+  { href: '/cocktails', label: 'Cocktails' },
+  { href: '/videos', label: 'Videos' },
+];
 ---
 <header class="site-header">
   <a class="brand" href="/" aria-label="Mini CCC home">
     <BrandMark />
     <span>mini <strong>CCC</strong></span>
   </a>
+  <nav class="site-nav" aria-label="Main navigation">
+    {links.map((link) => (
+      <a href={link.href} class:list={{ 'is-active': currentPath === link.href }} aria-current={currentPath === link.href ? 'page' : undefined}>
+        {link.label}
+      </a>
+    ))}
+  </nav>
   <div class="header-actions">
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: automatic. Switch to light mode">
       <span class="theme-icon theme-icon--auto" aria-hidden="true">

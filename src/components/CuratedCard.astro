@@ -1,0 +1,35 @@
+---
+import ProjectViz from './ProjectViz.astro';
+import type { Cocktail, CuratedVideo } from '../data/content';
+
+type Props = {
+  item: Cocktail | CuratedVideo;
+  type: 'cocktail' | 'video';
+};
+
+const { item, type } = Astro.props;
+const isVideo = type === 'video';
+---
+<article class:list={['content-card', `content-card--${type}`]}>
+  <div class="content-card__visual">
+    <ProjectViz visual={item.visual} accent={item.accent} />
+    <span class="content-card__number">{String(item.number).padStart(2, '0')}</span>
+    <span class="content-card__type">{isVideo ? 'WATCH LIST' : 'POUR LIST'}</span>
+  </div>
+  <div class="content-card__copy">
+    <div class="content-card__meta">
+      <span>{isVideo ? (item as CuratedVideo).channel : (item as Cocktail).style}</span>
+      <span>{isVideo ? (item as CuratedVideo).duration : ((item as Cocktail).alcoholFree ? 'NO ALCOHOL' : 'WITH ALCOHOL')}</span>
+    </div>
+    <h2>{isVideo ? (item as CuratedVideo).title : (item as Cocktail).name}</h2>
+    <p>{item.summary}</p>
+    {isVideo ? (
+      <a class="content-card__link" href={(item as CuratedVideo).url} target="_blank" rel="noreferrer">Open on YouTube <span aria-hidden="true">↗</span></a>
+    ) : (
+      <div class="cocktail-details">
+        <div><span>INGREDIENTS</span><p>{(item as Cocktail).ingredients.join(' · ')}</p></div>
+        <div><span>METHOD</span><p>{(item as Cocktail).method}</p></div>
+      </div>
+    )}
+  </div>
+</article>

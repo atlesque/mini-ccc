@@ -17,7 +17,7 @@ if (!project) return Astro.redirect('/');
     <main class="detail-page">
       <section class="detail-hero section-pad">
         <div class="detail-copy">
-          <a class="back-link" href="/#builds"><span aria-hidden="true">←</span> back to the build list</a>
+          <a class="back-link" href="/builds"><span aria-hidden="true">←</span> back to the build list</a>
           <p class="eyebrow"><span class="eyebrow-marker">BUILD {String(project.number).padStart(2, '0')}</span> {project.tag}</p>
           <h1>{project.name}</h1>
           <p class="detail-summary">{project.summary}</p>
@@ -65,7 +65,7 @@ if (!project) return Astro.redirect('/');
 
       <section class="detail-next section-pad">
         <div><p class="eyebrow"><span class="eyebrow-marker">KEEP BROWSING</span> one more idea</p><h2>Find the next<br /><em>rabbit hole.</em></h2></div>
-        <a class="button button--primary" href="/#builds">Back to all builds <span aria-hidden="true">↗</span></a>
+        <a class="button button--primary" href="/builds">Back to all builds <span aria-hidden="true">↗</span></a>
       </section>
     </main>
   </div>
