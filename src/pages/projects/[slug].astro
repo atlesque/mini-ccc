@@ -25,9 +25,6 @@ if (!project) return Astro.redirect('/');
             <button class="button button--save" type="button" data-favorite-button data-favorite-id={project.slug}>
               <span class="favorite-symbol" aria-hidden="true">♡</span> <span data-favorite-label>Save this build</span>
             </button>
-            <button class="vote-action vote-action--large" type="button" data-vote-button data-vote-id={project.slug} data-base-votes={project.votes}>
-              <span data-vote-label>Vote {project.votes}</span><span aria-hidden="true">+</span>
-            </button>
           </div>
         </div>
         <div class="detail-art">

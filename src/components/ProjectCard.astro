@@ -15,7 +15,6 @@ const { project } = Astro.props;
   data-kind={project.kind}
   data-title={project.name.toLowerCase()}
   data-summary={project.summary.toLowerCase()}
-  data-vote-count={project.votes}
 >
   <a class="project-card__main" href={`/projects/${project.slug}`}>
     <div class="project-card__topline">
@@ -31,13 +30,8 @@ const { project } = Astro.props;
   </a>
   <div class="project-card__footer">
     <span class="project-cost">€{project.total.toFixed(2)} <small>/ build</small></span>
-    <div class="project-card__actions">
-      <button class="icon-action" type="button" data-favorite-button data-favorite-id={project.slug} aria-label={`Save ${project.name}`}>
-        <span class="favorite-symbol" aria-hidden="true">♡</span><span data-favorite-label>Save</span>
-      </button>
-      <button class="vote-action" type="button" data-vote-button data-vote-id={project.slug}>
-        <span data-vote-label>Vote {project.votes}</span><span aria-hidden="true">+</span>
-      </button>
-    </div>
+    <button class="icon-action" type="button" data-favorite-button data-favorite-id={project.slug} aria-label={`Save ${project.name}`}>
+      <span class="favorite-symbol" aria-hidden="true">♡</span><span data-favorite-label>Save</span>
+    </button>
   </div>
 </article>

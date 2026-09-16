@@ -1,5 +1,6 @@
 const FAVORITES_KEY = 'mini-ccc-favorites';
-const VOTES_KEY = 'mini-ccc-votes';
+type ThemePreference = 'auto' | 'light' | 'dark';
+const themePreferences: ThemePreference[] = ['auto', 'light', 'dark'];
 
 function readJson<T>(key: string, fallback: T): T {
   try {
@@ -16,6 +17,29 @@ function readFavorites() {
 
 function writeFavorites(favorites: Set<string>) {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+}
+
+let toastTimer: number | undefined;
+
+function showToast(message: string) {
+  const toast = document.querySelector<HTMLElement>('[data-toast]');
+  if (!toast) return;
+  if (toastTimer) window.clearTimeout(toastTimer);
+  toast.textContent = message;
+  toast.hidden = false;
+  requestAnimationFrame(() => toast.classList.add('is-visible'));
+  toastTimer = window.setTimeout(() => {
+    toast.classList.remove('is-visible');
+    window.setTimeout(() => { toast.hidden = true; }, 180);
+  }, 1800);
+}
+
+function animateFavorite(button: HTMLElement) {
+  const symbol = button.querySelector<HTMLElement>('.favorite-symbol');
+  if (!symbol) return;
+  symbol.classList.remove('is-popping');
+  void symbol.offsetWidth;
+  symbol.classList.add('is-popping');
 }
 
 function updateFavoriteUi() {
@@ -36,45 +60,16 @@ function updateFavoriteUi() {
   });
 }
 
-function updateVoteUi() {
-  const votes = readJson<Record<string, number>>(VOTES_KEY, {});
-  document.querySelectorAll<HTMLElement>('[data-vote-button]').forEach((button) => {
-    const id = button.dataset.voteId;
-    if (!id) return;
-    const initial = Number(button.dataset.baseVotes ?? button.closest('[data-vote-count]')?.getAttribute('data-vote-count') ?? 0);
-    const count = votes[id] ?? initial;
-    const voted = Boolean(readJson<string[]>(`${VOTES_KEY}-voted`, []).includes(id));
-    button.classList.toggle('is-voted', voted);
-    const label = button.querySelector('[data-vote-label]');
-    if (label) label.textContent = `${voted ? 'Voted' : 'Vote'} ${count}`;
-    button.setAttribute('aria-pressed', String(voted));
-    button.dataset.currentVotes = String(count);
-  });
-}
-
-function sortCards() {
-  const grid = document.querySelector<HTMLElement>('[data-project-grid]');
-  if (!grid) return;
-  const favorites = readFavorites();
-  const cards = [...grid.querySelectorAll<HTMLElement>('[data-project-card]')];
-  cards.sort((a, b) => {
-    const aSaved = favorites.has(a.dataset.projectId ?? '') ? 1 : 0;
-    const bSaved = favorites.has(b.dataset.projectId ?? '') ? 1 : 0;
-    if (aSaved !== bSaved) return bSaved - aSaved;
-    return Number(b.dataset.currentVotes ?? b.dataset.voteCount ?? 0) - Number(a.dataset.currentVotes ?? a.dataset.voteCount ?? 0);
-  });
-  cards.forEach((card) => grid.appendChild(card));
-}
-
 function applyFilters() {
   const search = document.querySelector<HTMLInputElement>('[data-project-search]')?.value.trim().toLowerCase() ?? '';
   const active = document.querySelector<HTMLElement>('[data-filter-button].is-active')?.dataset.filter ?? 'all';
   const favorites = readFavorites();
+  const isSearching = search.length > 0;
   let visible = 0;
   document.querySelectorAll<HTMLElement>('[data-project-card]').forEach((card) => {
     const matchesSearch = !search || `${card.dataset.title} ${card.dataset.summary}`.includes(search);
-    const matchesKind = active === 'all' || active === 'favorites' ? true : card.dataset.kind === active;
-    const matchesFavorites = active !== 'favorites' || favorites.has(card.dataset.projectId ?? '');
+    const matchesKind = isSearching || active === 'all' || active === 'favorites' ? true : card.dataset.kind === active;
+    const matchesFavorites = isSearching || active !== 'favorites' || favorites.has(card.dataset.projectId ?? '');
     const show = matchesSearch && matchesKind && matchesFavorites;
     card.hidden = !show;
     if (show) visible += 1;
@@ -85,11 +80,34 @@ function applyFilters() {
   if (empty) empty.hidden = visible > 0;
 }
 
-function setTheme(theme: 'light' | 'dark') {
+function readThemePreference(): ThemePreference {
+  const stored = localStorage.getItem('mini-ccc-theme');
+  return stored === 'auto' || stored === 'light' || stored === 'dark' ? stored : 'auto';
+}
+
+function resolveTheme(preference: ThemePreference): 'light' | 'dark' {
+  if (preference !== 'auto') return preference;
+  return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+
+function nextThemePreference(preference: ThemePreference): ThemePreference {
+  const currentIndex = themePreferences.indexOf(preference);
+  return themePreferences[(currentIndex + 1) % themePreferences.length];
+}
+
+function setThemePreference(preference: ThemePreference, persist = true) {
+  const theme = resolveTheme(preference);
   document.documentElement.dataset.theme = theme;
-  try { localStorage.setItem('mini-ccc-theme', theme); } catch {}
+  document.documentElement.dataset.themePreference = preference;
+  if (persist) {
+    try { localStorage.setItem('mini-ccc-theme', preference); } catch {}
+  }
+  const currentLabel = preference === 'auto' ? 'automatic' : preference;
+  const nextPreference = nextThemePreference(preference);
+  const nextLabel = nextPreference === 'auto' ? 'automatic mode' : `${nextPreference} mode`;
   document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((button) => {
-    button.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    button.setAttribute('aria-label', `Theme: ${currentLabel}. Switch to ${nextLabel}`);
+    button.setAttribute('title', `Theme: ${currentLabel} · next: ${nextLabel}`);
   });
 }
 
@@ -102,40 +120,19 @@ document.addEventListener('click', (event) => {
     if (!id) return;
     const favorites = readFavorites();
     if (favorites.has(id)) favorites.delete(id); else favorites.add(id);
+    const saved = favorites.has(id);
     writeFavorites(favorites);
     updateFavoriteUi();
-    sortCards();
     applyFilters();
-    return;
-  }
-
-  const voteButton = target?.closest<HTMLButtonElement>('[data-vote-button]');
-  if (voteButton) {
-    event.preventDefault();
-    const id = voteButton.dataset.voteId;
-    if (!id) return;
-    const votedIds = new Set(readJson<string[]>(`${VOTES_KEY}-voted`, []));
-    const votes = readJson<Record<string, number>>(VOTES_KEY, {});
-    const initial = Number(voteButton.dataset.baseVotes ?? voteButton.closest('[data-vote-count]')?.getAttribute('data-vote-count') ?? 0);
-    const current = votes[id] ?? initial;
-    if (votedIds.has(id)) {
-      votedIds.delete(id);
-      votes[id] = Math.max(initial, current - 1);
-    } else {
-      votedIds.add(id);
-      votes[id] = current + 1;
-    }
-    localStorage.setItem(`${VOTES_KEY}-voted`, JSON.stringify([...votedIds]));
-    localStorage.setItem(VOTES_KEY, JSON.stringify(votes));
-    updateVoteUi();
-    sortCards();
+    animateFavorite(favoriteButton);
+    showToast(saved ? 'Added to saved builds' : 'Removed from saved builds');
     return;
   }
 
   const themeButton = target?.closest<HTMLButtonElement>('[data-theme-toggle]');
   if (themeButton) {
-    const current = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
-    setTheme(current === 'dark' ? 'light' : 'dark');
+    const current = document.documentElement.dataset.themePreference as ThemePreference;
+    setThemePreference(themePreferences.includes(current) ? nextThemePreference(current) : 'auto');
   }
 
   const filterButton = target?.closest<HTMLButtonElement>('[data-filter-button]');
@@ -148,9 +145,11 @@ document.addEventListener('click', (event) => {
 
 document.querySelector<HTMLInputElement>('[data-project-search]')?.addEventListener('input', applyFilters);
 
-const theme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
-setTheme(theme);
+const themePreference = readThemePreference();
+setThemePreference(themePreference);
+const colorSchemeQuery = window.matchMedia?.('(prefers-color-scheme: light)');
+colorSchemeQuery?.addEventListener('change', () => {
+  if (document.documentElement.dataset.themePreference === 'auto') setThemePreference('auto', false);
+});
 updateFavoriteUi();
-updateVoteUi();
-sortCards();
 applyFilters();

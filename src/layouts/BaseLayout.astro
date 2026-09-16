@@ -13,7 +13,7 @@ const {
 const pageTitle = title.includes('Mini CCC') ? title : `${title} — Mini CCC`;
 ---
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-theme-preference="auto">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -26,13 +26,19 @@ const pageTitle = title.includes('Mini CCC') ? title : `${title} — Mini CCC`;
     <script is:inline>
       try {
         const stored = localStorage.getItem('mini-ccc-theme');
-        if (stored === 'light' || stored === 'dark') document.documentElement.dataset.theme = stored;
+        const preference = stored === 'auto' || stored === 'light' || stored === 'dark' ? stored : 'auto';
+        const theme = preference === 'auto'
+          ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          : preference;
+        document.documentElement.dataset.themePreference = preference;
+        document.documentElement.dataset.theme = theme;
       } catch (error) {}
     </script>
   </head>
   <body>
     <div class="site-noise" aria-hidden="true"></div>
     <slot />
+    <div class="toast" data-toast role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <script src="../scripts/ui.ts"></script>
   </body>
 </html>

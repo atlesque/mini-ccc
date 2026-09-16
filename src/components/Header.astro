@@ -1,17 +1,26 @@
+---
+import BrandMark from './BrandMark.astro';
+---
 <header class="site-header">
   <a class="brand" href="/" aria-label="Mini CCC home">
-    <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    <BrandMark />
     <span>mini <strong>CCC</strong></span>
   </a>
   <nav class="site-nav" aria-label="Primary navigation">
     <a href="/#builds">Builds <span class="nav-dot">20</span></a>
-    <a href="/#how-it-works">How it works</a>
   </nav>
   <div class="header-actions">
     <a class="shortlist-link" href="/#builds"><span data-favorite-count>0</span> saved</a>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode">
-      <span class="theme-icon theme-icon--sun" aria-hidden="true">☼</span>
-      <span class="theme-icon theme-icon--moon" aria-hidden="true">◐</span>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: automatic. Switch to light mode">
+      <span class="theme-icon theme-icon--auto" aria-hidden="true">
+        <svg viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="7.2" /><path d="M10 2.8a7.2 7.2 0 0 1 0 14.4Z" /></svg>
+      </span>
+      <span class="theme-icon theme-icon--sun" aria-hidden="true">
+        <svg viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="3.6" /><path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M16 4l-1.4 1.4M5.4 14.6 4 16" /></svg>
+      </span>
+      <span class="theme-icon theme-icon--moon" aria-hidden="true">
+        <svg viewBox="0 0 20 20" focusable="false"><path d="M14.6 3.1a7.5 7.5 0 1 0 2.3 13.1A7 7 0 0 1 14.6 3.1Z" /></svg>
+      </span>
     </button>
   </div>
 </header>
