@@ -1,0 +1,43 @@
+---
+import ProjectViz from './ProjectViz.astro';
+import type { Project } from '../data/projects';
+
+type Props = {
+  project: Project;
+};
+
+const { project } = Astro.props;
+---
+<article
+  class="project-card"
+  data-project-card
+  data-project-id={project.slug}
+  data-kind={project.kind}
+  data-title={project.name.toLowerCase()}
+  data-summary={project.summary.toLowerCase()}
+  data-vote-count={project.votes}
+>
+  <a class="project-card__main" href={`/projects/${project.slug}`}>
+    <div class="project-card__topline">
+      <span class="project-number">{String(project.number).padStart(2, '0')}</span>
+      <span class="project-tag">{project.tag}</span>
+      <span class="project-arrow" aria-hidden="true">↗</span>
+    </div>
+    <ProjectViz visual={project.visual} accent={project.accent} />
+    <div class="project-card__copy">
+      <h3>{project.name}</h3>
+      <p>{project.summary}</p>
+    </div>
+  </a>
+  <div class="project-card__footer">
+    <span class="project-cost">€{project.total.toFixed(2)} <small>/ build</small></span>
+    <div class="project-card__actions">
+      <button class="icon-action" type="button" data-favorite-button data-favorite-id={project.slug} aria-label={`Save ${project.name}`}>
+        <span class="favorite-symbol" aria-hidden="true">♡</span><span data-favorite-label>Save</span>
+      </button>
+      <button class="vote-action" type="button" data-vote-button data-vote-id={project.slug}>
+        <span data-vote-label>Vote {project.votes}</span><span aria-hidden="true">+</span>
+      </button>
+    </div>
+  </div>
+</article>

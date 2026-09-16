@@ -1,0 +1,84 @@
+Build #,Build,Item #,Item,Item cost EUR,Purchase URL
+1,Simon Memory Console,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+1,Simon Memory Console,2,4x arcade button,11.60,https://www.berrybase.de/en/arcade-button-44mm-beleuchtet-led-12v-dc
+1,Simon Memory Console,3,16-LED ring,4.80,https://www.berrybase.de/en/neopixel-ring-with-16-ws2812-5050-rgb-leds
+1,Simon Memory Console,4,buzzer,1.10,https://www.berrybase.de/en/ky-006-passive-buzzer-module/
+1,Simon Memory Console,5,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+1,Simon Memory Console,6,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+2,Wi-Fi LED News Ticker,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+2,Wi-Fi LED News Ticker,2,MAX7219 4x8x8 matrix,4.90,https://www.berrybase.de/en/detail/019234a653f37230909d6bbf6fe51d8f
+2,Wi-Fi LED News Ticker,3,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+2,Wi-Fi LED News Ticker,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+3,Retro Matrix Terminal,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+3,Retro Matrix Terminal,2,2x MAX7219 matrices,9.80,https://www.berrybase.de/en/detail/019234a653f37230909d6bbf6fe51d8f
+3,Retro Matrix Terminal,3,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+3,Retro Matrix Terminal,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+4,Arcade Reaction Timer,1,Nano,6.90,https://www.berrybase.de/en/compatible-arduino-nano-with-atmel-mega-328p-processor-ch340g-usb-chipset
+4,Arcade Reaction Timer,2,TM1637 display,1.40,https://www.berrybase.de/en/7-segment-led-display-modul-i2c-schnittstelle-tm1637-14mm-rot
+4,Arcade Reaction Timer,3,arcade button,2.90,https://www.berrybase.de/en/arcade-button-44mm-beleuchtet-led-12v-dc
+4,Arcade Reaction Timer,4,buzzer,1.10,https://www.berrybase.de/en/ky-006-passive-buzzer-module/
+4,Arcade Reaction Timer,5,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+4,Arcade Reaction Timer,6,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+5,LED Decision Machine,1,ESP32,6.80,https://www.berrybase.de/en/berrybase-nodemcu-esp32-dev-board-wroom32-240-mhz-dual-core-cp2102-34-gpio-5v-unsoldered/
+5,LED Decision Machine,2,60-LED ring,17.50,https://www.berrybase.de/en/sensors-modules/led/ws2812-13-neopixel/rings/
+5,LED Decision Machine,3,Mean Well 5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+5,LED Decision Machine,4,arcade button,2.90,https://www.berrybase.de/en/arcade-button-44mm-beleuchtet-led-12v-dc
+5,LED Decision Machine,5,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+5,LED Decision Machine,6,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+6,Conway's Game of Life Frame,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+6,Conway's Game of Life Frame,2,8x8 WS2812 matrix,8.70,https://www.berrybase.de/en/neopixel-square-8x8-matrix-mit-64-ws2812-5050-rgb-leds
+6,Conway's Game of Life Frame,3,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+6,Conway's Game of Life Frame,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+7,RGB Pixel-Art Frame,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+7,RGB Pixel-Art Frame,2,8x8 WS2812 matrix,8.70,https://www.berrybase.de/en/neopixel-square-8x8-matrix-mit-64-ws2812-5050-rgb-leds
+7,RGB Pixel-Art Frame,3,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+7,RGB Pixel-Art Frame,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+8,Mini OLED Game Console,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+8,Mini OLED Game Console,2,0.96in 128x64 OLED,7.80,https://www.berrybase.de/en/sensors-modules/displays/?p=2
+8,Mini OLED Game Console,3,joystick,1.55,https://www.berrybase.de/en/analoges-2-achsen-joystick-modul-mit-select-taster
+8,Mini OLED Game Console,4,2x arcade buttons,5.80,https://www.berrybase.de/en/arcade-button-44mm-beleuchtet-led-12v-dc
+8,Mini OLED Game Console,5,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+8,Mini OLED Game Console,6,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+9,Touch-Controlled Colour Synth,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+9,Touch-Controlled Colour Synth,2,MPR121 touch controller,1.80,https://www.berrybase.de/en/mpr121-kapazitiver-touch-sensor-controller-mit-breakout-board
+9,Touch-Controlled Colour Synth,3,16-LED ring,4.80,https://www.berrybase.de/en/neopixel-ring-with-16-ws2812-5050-rgb-leds
+9,Touch-Controlled Colour Synth,4,buzzer,1.10,https://www.berrybase.de/en/ky-006-passive-buzzer-module/
+9,Touch-Controlled Colour Synth,5,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+9,Touch-Controlled Colour Synth,6,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+10,Build-Status Light Sculpture,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+10,Build-Status Light Sculpture,2,3x 16-LED rings,14.40,https://www.berrybase.de/en/neopixel-ring-with-16-ws2812-5050-rgb-leds
+10,Build-Status Light Sculpture,3,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+10,Build-Status Light Sculpture,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+11,E-Paper Hacker Badge,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+11,E-Paper Hacker Badge,2,Waveshare 2.9in e-paper,16.90,https://www.berrybase.de/en/waveshare-2.9-e-paper-modul-296x128-graustufen-spi-schnittstelle-1700-blickwinkel-3-3v
+11,E-Paper Hacker Badge,3,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+12,Music Spectrum Display,1,ESP32,6.80,https://www.berrybase.de/en/berrybase-nodemcu-esp32-dev-board-wroom32-240-mhz-dual-core-cp2102-34-gpio-5v-unsoldered/
+12,Music Spectrum Display,2,8x8 WS2812 matrix,8.70,https://www.berrybase.de/en/neopixel-square-8x8-matrix-mit-64-ws2812-5050-rgb-leds
+12,Music Spectrum Display,3,MAX9814 microphone,2.38,https://www.berrybase.de/en/electret-microphone-amplifier-gy-max9814/
+12,Music Spectrum Display,4,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+12,Music Spectrum Display,5,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+12,Music Spectrum Display,6,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+13,Round Spaceship Instrument,1,Waveshare ESP32-C3 + integrated 0.71in round IPS display + housing,13.50,https://www.berrybase.de/en/waveshare-esp32-c3-round-display-dev-board-0.71-ips-risc-v-160-mhz-wi-fi-bluetooth-5-3.3v
+14,Tiny Touchscreen Control Deck,1,Waveshare ESP32-S3 + 2.8in capacitive touchscreen,27.90,https://www.berrybase.de/en/waveshare-esp32-s3-2.8-display-240x320-5-point-touch-wifi-ble-5-dual-core-240-mhz-16mb
+15,AMOLED Cyber Badge,1,Waveshare ESP32-S3 + 1.91in AMOLED,34.90,https://www.berrybase.de/en/waveshare-esp32-s3-mikrocontroller-240-mhz-16-mb-flash-wi-fi-bt5-1.91-zoll-amoled-display
+16,Ultrasonic Radar Display,1,ESP32,6.80,https://www.berrybase.de/en/berrybase-nodemcu-esp32-dev-board-wroom32-240-mhz-dual-core-cp2102-34-gpio-5v-unsoldered/
+16,Ultrasonic Radar Display,2,60-LED ring,17.50,https://www.berrybase.de/en/sensors-modules/led/ws2812-13-neopixel/rings/
+16,Ultrasonic Radar Display,3,HC-SR04,1.49,https://www.berrybase.de/en/hc-sr04-ultrasonic-sensor
+16,Ultrasonic Radar Display,4,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+16,Ultrasonic Radar Display,5,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+16,Ultrasonic Radar Display,6,breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts
+17,60-Pixel Clock Halo,1,ESP32,6.80,https://www.berrybase.de/en/berrybase-nodemcu-esp32-dev-board-wroom32-240-mhz-dual-core-cp2102-34-gpio-5v-unsoldered/
+17,60-Pixel Clock Halo,2,60-LED ring,17.50,https://www.berrybase.de/en/sensors-modules/led/ws2812-13-neopixel/rings/
+17,60-Pixel Clock Halo,3,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+17,60-Pixel Clock Halo,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+18,Electronic Compass Halo,1,ESP32,6.80,https://www.berrybase.de/en/berrybase-nodemcu-esp32-dev-board-wroom32-240-mhz-dual-core-cp2102-34-gpio-5v-unsoldered/
+18,Electronic Compass Halo,2,60-LED ring,17.50,https://www.berrybase.de/en/sensors-modules/led/ws2812-13-neopixel/rings/
+18,Electronic Compass Halo,3,QMC5883 compass,3.80,https://www.berrybase.de/en/gy-271-qmc5883-magnetic-field-meter-compass-module
+18,Electronic Compass Halo,4,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+18,Electronic Compass Halo,5,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+19,LED Light-Painting Wand,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
+19,LED Light-Painting Wand,2,1m WS2813 60 LED/m strip,11.60,https://www.berrybase.de/en/seeed-grove-ws2813-rgb-led-stripe-waterproof-60-led-m-1m
+19,LED Light-Painting Wand,3,5V/4A PSU,12.90,https://www.berrybase.de/en/meanwell-switching-power-supply-5v-dc-4.0a-with-hollow-plug-5.5x2.1mm
+19,LED Light-Painting Wand,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
+20,Thermal Hacker Receipt Printer,1,"10POS RP-12N 80mm thermal receipt printer (includes 24V PSU, USB cable, RS232 cable, starter paper roll)",85.90,https://youget.pt/en/thermal-receipt-printer-10pos-rp-12n-80mm-usbrs232ethernetrj11-black
+20,Thermal Hacker Receipt Printer,2,"123inkt 80x80x12mm thermal receipt paper, 5-roll pack (75m per roll)",9.95,https://www.123inkt.be/Papier-en-etiketten/Kassarollen/Thermorollen/Kassarollen-80x80x12-mm-p222334.html

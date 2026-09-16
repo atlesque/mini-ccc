@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import ProjectViz from '../../components/ProjectViz.astro';
+import { eventImage, projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+if (!project) return Astro.redirect('/');
+---
+<BaseLayout title={`${project.name} — build details`} description={project.summary}>
+  <div class="page-shell">
+    <Header />
+    <main class="detail-page">
+      <section class="detail-hero section-pad">
+        <div class="detail-copy">
+          <a class="back-link" href="/#builds"><span aria-hidden="true">←</span> back to the build list</a>
+          <p class="eyebrow"><span class="eyebrow-marker">BUILD {String(project.number).padStart(2, '0')}</span> {project.tag}</p>
+          <h1>{project.name}</h1>
+          <p class="detail-summary">{project.summary}</p>
+          <div class="detail-actions">
+            <button class="button button--save" type="button" data-favorite-button data-favorite-id={project.slug}>
+              <span class="favorite-symbol" aria-hidden="true">♡</span> <span data-favorite-label>Save this build</span>
+            </button>
+            <button class="vote-action vote-action--large" type="button" data-vote-button data-vote-id={project.slug} data-base-votes={project.votes}>
+              <span data-vote-label>Vote {project.votes}</span><span aria-hidden="true">+</span>
+            </button>
+          </div>
+        </div>
+        <div class="detail-art">
+          <div class="detail-art__image"><img src={eventImage} alt="Illustrated electronics workbench for Mini CCC" /></div>
+          <div class="detail-art__viz"><ProjectViz visual={project.visual} accent={project.accent} large /></div>
+          <span class="detail-art__note">VISUAL STUDY / MINI CCC</span>
+        </div>
+      </section>
+
+      <section class="detail-content section-pad">
+        <div class="detail-intro">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-marker">THE IDEA</span> what it does</p>
+            <p class="detail-description">{project.description}</p>
+          </div>
+          <div class="detail-signal"><span>LIVE BUILD SIGNAL</span><strong>{project.signal}</strong><i></i></div>
+        </div>
+
+        <div class="bom-layout">
+          <div class="bom-heading">
+            <p class="eyebrow"><span class="eyebrow-marker">THE KIT</span> bill of materials</p>
+            <h2>Parts list</h2>
+            <p>{project.items.length} components, one good evening. Prices are in euro and link straight to the suggested source.</p>
+          </div>
+          <div class="bom-card">
+            <div class="bom-card__header"><span>ITEM</span><span>COST</span></div>
+            <div class="bom-rows">
+              {project.items.map((item) => (
+                <div class="bom-row">
+                  <div><span class="bom-index">{String(item.number).padStart(2, '0')}</span><span>{item.name}</span></div>
+                  <div><strong>€{item.cost.toFixed(2)}</strong><a href={item.url} target="_blank" rel="noreferrer" aria-label={`Buy ${item.name}`}>↗</a></div>
+                </div>
+              ))}
+            </div>
+            <div class="bom-total"><span>ESTIMATED BUILD TOTAL</span><strong>€{project.total.toFixed(2)}</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-next section-pad">
+        <div><p class="eyebrow"><span class="eyebrow-marker">KEEP BROWSING</span> one more idea</p><h2>Find the next<br /><em>rabbit hole.</em></h2></div>
+        <a class="button button--primary" href="/#builds">Back to all builds <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

@@ -1,0 +1,32 @@
+---
+type Props = {
+  visual: string;
+  accent?: string;
+  large?: boolean;
+};
+
+const { visual, accent = 'lime', large = false } = Astro.props;
+const pixels = Array.from({ length: visual === 'life' || visual === 'pixel' ? 36 : 16 });
+---
+<div class:list={['project-viz', `project-viz--${visual}`, `project-viz--${accent}`, { 'project-viz--large': large }]} aria-hidden="true">
+  <div class="viz-grid"></div>
+  {visual === 'simon' && <div class="viz-buttons"><i></i><i></i><i></i><i></i></div>}
+  {visual === 'ticker' && <div class="viz-ticker"><span>MINI CCC // SIGNAL</span><span>BUILD SOMETHING TINY</span></div>}
+  {visual === 'terminal' && <div class="viz-terminal"><span>&gt; boot mini_ccc</span><span>matrix online_</span><span>█ █ ██ █ █</span></div>}
+  {visual === 'timer' && <div class="viz-timer"><b>0.238</b><span>PRESS / REACT</span></div>}
+  {visual === 'decision' && <div class="viz-ring"><i></i><i></i><i></i><b>?</b></div>}
+  {(visual === 'life' || visual === 'pixel') && <div class="viz-pixels">{pixels.map((_, index) => <i class:list={{ 'is-on': (index * 7 + 3) % 11 < 4 }}></i>)}</div>}
+  {visual === 'console' && <div class="viz-console"><div class="viz-screen">▲<br />◼︎ ◼︎</div><div class="viz-controls"><i></i><i></i><i></i></div></div>}
+  {visual === 'synth' && <div class="viz-synth"><i></i><i></i><i></i><i></i><b>TOUCH</b></div>}
+  {visual === 'status' && <div class="viz-status"><i></i><i></i><i></i><span>BUILD / PASS</span></div>}
+  {visual === 'badge' && <div class="viz-badge"><span>HELLO</span><b>:)</b><small>MINI CCC / 26</small></div>}
+  {visual === 'spectrum' && <div class="viz-spectrum">{Array.from({ length: 9 }).map((_, index) => <i style={`--height: ${24 + ((index * 19) % 58)}%`}></i>)}</div>}
+  {visual === 'spaceship' && <div class="viz-spaceship"><div class="viz-orbit"></div><b>08:42</b><small>ORBIT OK</small></div>}
+  {visual === 'deck' && <div class="viz-deck"><span></span><span></span><span></span><span></span><b>CONTROL</b></div>}
+  {visual === 'amoled' && <div class="viz-amoled"><b>CCC</b><span>01:01</span><i></i></div>}
+  {visual === 'radar' && <div class="viz-radar"><i></i><i></i><b></b></div>}
+  {visual === 'clock' && <div class="viz-clock"><i></i><i></i><i></i><b>12</b></div>}
+  {visual === 'compass' && <div class="viz-compass"><i></i><b>N</b><span>E</span><small>S</small><em>W</em></div>}
+  {visual === 'wand' && <div class="viz-wand"><i></i><i></i><i></i><i></i><span></span></div>}
+  {visual === 'printer' && <div class="viz-printer"><div class="viz-paper">MINI CCC<br />BUILD #20<br />PASS ✓</div><b></b></div>}
+</div>
