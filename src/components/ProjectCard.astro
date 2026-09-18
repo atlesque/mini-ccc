@@ -1,5 +1,6 @@
 ---
 import ProjectViz from './ProjectViz.astro';
+import FavoriteButton from './FavoriteButton.astro';
 import type { Project } from '../data/projects';
 
 type Props = {
@@ -31,8 +32,6 @@ const { project } = Astro.props;
   </a>
   <div class="project-card__footer">
     <span class="project-cost">€{project.total.toFixed(2)} <small>/ build</small></span>
-    <button class="icon-action" type="button" data-favorite-button data-favorite-id={project.slug} aria-label={`Save ${project.name}`}>
-      <span class="favorite-symbol" aria-hidden="true">♡</span><span data-favorite-label>Save</span>
-    </button>
+    <FavoriteButton projectId={project.slug} projectName={project.name} compact />
   </div>
 </article>

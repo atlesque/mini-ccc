@@ -26,13 +26,12 @@ const times = Array.from({ length: 25 }, (_, index) => {
 ---
 <BaseLayout title="Schedule" description="Build a tiny, highly adjustable day for Mini CCC.">
   <div class="page-shell">
-    <Header />
+    <Header
+      title="Make room for"
+      titleAccent="good ideas."
+    />
     <main>
       <section class="schedule-section section-pad">
-        <div class="schedule-heading">
-          <div><p class="eyebrow"><span class="eyebrow-marker">THE RUN OF SHOW</span> mini CCC / make a day of it</p><h1>Make room for<br /><em>good ideas.</em></h1></div>
-          <p class="schedule-lede">A loose agenda for a very full day. Drag the blocks around, stretch the good bits, and leave a little room for lunch.</p>
-        </div>
         <div class="schedule-layout">
           <aside class="schedule-palette" aria-label="Available schedule blocks">
             <div class="schedule-panel-heading"><span>AVAILABLE BLOCKS</span><span>DRAG TO ADD</span></div>

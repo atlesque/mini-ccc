@@ -40,14 +40,12 @@ const destinations = [
 ---
 <BaseLayout title="Mini CCC" description="A tiny home conference for making, watching, mixing, and moving at your own pace.">
   <div class="page-shell">
-    <Header />
+    <Header
+      title="mini CCC"
+      variant="home"
+    />
     <main>
       <section class="home-section section-pad">
-        <div class="home-intro">
-          <p class="home-kicker"><span class="home-kicker__line"></span> A tiny home conference</p>
-          <h1>mini <strong>CCC</strong></h1>
-          <p class="home-summary">A small, self-directed day for curious people, good projects, and the things we want to make time for.</p>
-        </div>
         <div class="home-destinations" aria-label="Mini CCC sections">
           {destinations.map((destination) => (
             <a class:list={['home-card', `accent-${destination.accent}`]} href={destination.href}>

@@ -56,11 +56,12 @@ function updateFavoriteUi() {
     const saved = Boolean(id && favorites.has(id));
     button.classList.toggle('is-saved', saved);
     const label = button.querySelector('[data-favorite-label]');
-    if (label) label.textContent = saved ? 'Saved' : 'Save';
+    if (label) label.textContent = 'Favorite';
     button.setAttribute('aria-pressed', String(saved));
-    button.setAttribute('aria-label', saved ? 'Remove from saved builds' : 'Save build');
+    const title = button.dataset.favoriteTitle ?? 'build';
+    button.setAttribute('aria-label', saved ? `Remove ${title} from favorites` : `Favorite ${title}`);
     const symbol = button.querySelector('.favorite-symbol');
-    if (symbol) symbol.textContent = saved ? '♥' : '♡';
+    if (symbol) symbol.classList.toggle('is-filled', saved);
   });
   document.querySelectorAll<HTMLElement>('[data-favorite-count]').forEach((element) => {
     element.textContent = String(favorites.size);
@@ -347,7 +348,7 @@ document.addEventListener('click', (event) => {
     updateFavoriteUi();
     applyFilters();
     animateFavorite(favoriteButton);
-    showToast(saved ? 'Added to saved builds' : 'Removed from saved builds');
+    showToast(saved ? 'Added to favorites' : 'Removed from favorites');
     return;
   }
 

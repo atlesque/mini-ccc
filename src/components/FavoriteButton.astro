@@ -1,0 +1,23 @@
+---
+type Props = {
+  projectId: string;
+  projectName: string;
+  compact?: boolean;
+};
+
+const { projectId, projectName, compact = false } = Astro.props;
+---
+<button
+  class:list={['favorite-button', compact && 'favorite-button--compact']}
+  type="button"
+  data-favorite-button
+  data-favorite-id={projectId}
+  data-favorite-title={projectName}
+  aria-label={`Favorite ${projectName}`}
+  aria-pressed="false"
+>
+  <svg class="favorite-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" />
+  </svg>
+  <span data-favorite-label>Favorite</span>
+</button>

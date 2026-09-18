@@ -6,5 +6,5 @@ import CuratedCard from '../components/CuratedCard.astro';
 import { videos } from '../data/content';
 ---
 <BaseLayout title="Videos" description="A shared YouTube watch list for Mini CCC.">
-  <div class="page-shell"><Header /><main><section class="content-section section-pad"><div class="content-heading"><div><p class="eyebrow"><span class="eyebrow-marker">THE WATCH LIST</span> six rabbit holes / one room</p><h1>Queue up<br /><em>the good stuff.</em></h1></div><p>Builds, lock picking, tiny synths, and one very important ice detour. Save the tabs for later; these are the things worth watching together.</p></div><div class="content-grid">{videos.map((item) => <CuratedCard item={item} type="video" />)}</div></section><footer class="site-footer section-pad"><div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div></footer></main></div>
+  <div class="page-shell"><Header title="Queue up" titleAccent="the good stuff." /><main><section class="content-section section-pad"><div class="content-grid">{videos.map((item) => <CuratedCard item={item} type="video" />)}</div></section><footer class="site-footer section-pad"><div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div></footer></main></div>
 </BaseLayout>
