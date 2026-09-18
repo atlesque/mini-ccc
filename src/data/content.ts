@@ -7,6 +7,7 @@ export type CuratedVideo = {
   visual: string;
   accent: string;
   url: string;
+  thumbnail: string;
 };
 
 export type Cocktail = {
@@ -22,12 +23,12 @@ export type Cocktail = {
 };
 
 export const videos: CuratedVideo[] = [
-  { number: 1, title: 'Build an 8-bit computer from scratch', channel: 'Ben Eater', duration: 'SERIES', summary: 'A gloriously patient tour through logic gates, memory, and the joy of seeing a machine boot because you made every part of it.', visual: 'terminal', accent: 'blue', url: 'https://www.youtube.com/@BenEater/search?query=8-bit%20computer' },
-  { number: 2, title: 'A lock picking lesson in tiny movements', channel: 'LockPickingLawyer', duration: 'SHORT FORM', summary: 'A focused look at tension, feedback, and the surprising amount of information hidden inside one little click.', visual: 'radar', accent: 'orange', url: 'https://www.youtube.com/@lockpickinglawyer/search?query=beginner%20lock%20picking' },
-  { number: 3, title: 'The most over-engineered desk lamp', channel: 'Simone Giertz', duration: 'BUILD', summary: 'A playful build with enough mechanism, personality, and questionable decisions to make the whole room want to try something.', visual: 'wand', accent: 'pink', url: 'https://www.youtube.com/@simonegiertz/search?query=desk%20lamp' },
-  { number: 4, title: 'How to make a tiny synthesizer', channel: 'Look Mum No Computer', duration: 'DEEP DIVE', summary: 'Circuits, sound, and a beautiful amount of experimentation. Queue this one when the room starts making its own noises.', visual: 'synth', accent: 'lime', url: 'https://www.youtube.com/@LookMumNoComputer/search?query=synthesizer' },
-  { number: 5, title: 'Make a game with an LED matrix', channel: 'Maker search', duration: 'PROJECT', summary: 'A bright, approachable project that turns a grid of pixels into something immediately playable.', visual: 'pixel', accent: 'blue', url: 'https://www.youtube.com/results?search_query=DIY+LED+matrix+game+maker' },
-  { number: 6, title: 'The satisfying science of cocktail ice', channel: 'The Educated Barfly', duration: 'BAR LAB', summary: 'A small detour into clarity, dilution, and why the humble ice cube deserves its own close-up.', visual: 'clock', accent: 'orange', url: 'https://www.youtube.com/@TheEducatedBarfly/search?query=ice' },
+  { number: 1, title: 'Build an 8-bit computer from scratch', channel: 'Ben Eater', duration: 'SERIES', summary: 'A gloriously patient tour through logic gates, memory, and the joy of seeing a machine boot because you made every part of it.', visual: 'terminal', accent: 'blue', url: 'https://www.youtube.com/@BenEater/search?query=8-bit%20computer', thumbnail: 'https://i.ytimg.com/vi/HyznrdDSSGM/maxresdefault.jpg' },
+  { number: 2, title: 'A lock picking lesson in tiny movements', channel: 'LockPickingLawyer', duration: 'SHORT FORM', summary: 'A focused look at tension, feedback, and the surprising amount of information hidden inside one little click.', visual: 'radar', accent: 'orange', url: 'https://www.youtube.com/@lockpickinglawyer/search?query=beginner%20lock%20picking', thumbnail: 'https://i.ytimg.com/vi/T_sy3dLwHkc/maxresdefault.jpg' },
+  { number: 3, title: 'The most over-engineered desk lamp', channel: 'Simone Giertz', duration: 'BUILD', summary: 'A playful build with enough mechanism, personality, and questionable decisions to make the whole room want to try something.', visual: 'wand', accent: 'pink', url: 'https://www.youtube.com/@simonegiertz/search?query=desk%20lamp', thumbnail: 'https://i.ytimg.com/vi/GPSNT5vjSO8/maxresdefault.jpg' },
+  { number: 4, title: 'How to make a tiny synthesizer', channel: 'Look Mum No Computer', duration: 'DEEP DIVE', summary: 'Circuits, sound, and a beautiful amount of experimentation. Queue this one when the room starts making its own noises.', visual: 'synth', accent: 'lime', url: 'https://www.youtube.com/@LookMumNoComputer/search?query=synthesizer', thumbnail: 'https://i.ytimg.com/vi/10unLGcGQjs/maxresdefault.jpg' },
+  { number: 5, title: 'Make a game with an LED matrix', channel: 'Maker search', duration: 'PROJECT', summary: 'A bright, approachable project that turns a grid of pixels into something immediately playable.', visual: 'pixel', accent: 'blue', url: 'https://www.youtube.com/results?search_query=DIY+LED+matrix+game+maker', thumbnail: 'https://i.ytimg.com/vi/IMUkkf9EZII/maxresdefault.jpg' },
+  { number: 6, title: 'The satisfying science of cocktail ice', channel: 'The Educated Barfly', duration: 'BAR LAB', summary: 'A small detour into clarity, dilution, and why the humble ice cube deserves its own close-up.', visual: 'clock', accent: 'orange', url: 'https://www.youtube.com/@TheEducatedBarfly/search?query=ice', thumbnail: 'https://i.ytimg.com/vi/NC6-YoXwrdY/maxresdefault.jpg' },
 ];
 
 export const cocktails: Cocktail[] = [
