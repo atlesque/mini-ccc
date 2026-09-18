@@ -3,65 +3,66 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import BrandMark from '../components/BrandMark.astro';
 
-const palette = [
-  { id: 'cocktails', label: 'Cocktail making', short: 'COCKTAILS', accent: 'orange' },
-  { id: 'youtube', label: 'YouTube videos', short: 'YOUTUBE', accent: 'blue' },
-  { id: 'lockpicking', label: 'Lock picking', short: 'LOCK PICKING', accent: 'pink' },
-  { id: 'diy-one', label: 'DIY project 1', short: 'DIY 01', accent: 'lime' },
-  { id: 'diy-two', label: 'DIY project 2', short: 'DIY 02', accent: 'lime' },
+const destinations = [
+  {
+    href: '/schedule',
+    index: '01',
+    label: 'Plan the day',
+    title: 'Schedule',
+    description: 'Shape a loose agenda from 10:00 to 22:00.',
+    accent: 'lime',
+  },
+  {
+    href: '/builds',
+    index: '02',
+    label: 'Make something',
+    title: 'Builds',
+    description: 'Tiny electronics projects with big enough ideas.',
+    accent: 'blue',
+  },
+  {
+    href: '/cocktails',
+    index: '03',
+    label: 'Take a break',
+    title: 'Cocktails',
+    description: 'Club-Mate serves for staying bright and curious.',
+    accent: 'orange',
+  },
+  {
+    href: '/videos',
+    index: '04',
+    label: 'Watch together',
+    title: 'Videos',
+    description: 'A short list of rabbit holes worth sharing.',
+    accent: 'pink',
+  },
 ];
-
-const defaultBlocks = [
-  { ...palette[0], start: 0, duration: 1 },
-  { ...palette[1], start: 1, duration: 3 },
-  { ...palette[2], start: 6, duration: 2 },
-  { ...palette[3], start: 8, duration: 8 },
-  { ...palette[4], start: 16, duration: 8 },
-];
-
-const times = Array.from({ length: 25 }, (_, index) => {
-  const totalMinutes = 10 * 60 + index * 30;
-  return `${String(Math.floor(totalMinutes / 60)).padStart(2, '0')}:${String(totalMinutes % 60).padStart(2, '0')}`;
-});
 ---
-<BaseLayout title="Schedule" description="Build a tiny, highly adjustable day for Mini CCC.">
+<BaseLayout title="Mini CCC" description="A tiny home conference for making, watching, mixing, and moving at your own pace.">
   <div class="page-shell">
     <Header />
     <main>
-      <section class="schedule-section section-pad">
-        <div class="schedule-heading">
-          <div><p class="eyebrow"><span class="eyebrow-marker">THE RUN OF SHOW</span> mini CCC / make a day of it</p><h1>Make room for<br /><em>good ideas.</em></h1></div>
-          <p class="schedule-lede">A loose agenda for a very full day. Drag the blocks around, stretch the good bits, and leave a little room for lunch.</p>
+      <section class="home-section section-pad">
+        <div class="home-intro">
+          <p class="home-kicker"><span class="home-kicker__line"></span> A tiny home conference</p>
+          <h1>mini <strong>CCC</strong></h1>
+          <p class="home-summary">A small, self-directed day for curious people, good projects, and the things we want to make time for.</p>
         </div>
-        <div class="schedule-layout">
-          <aside class="schedule-palette" aria-label="Available schedule blocks">
-            <div class="schedule-panel-heading"><span>AVAILABLE BLOCKS</span><span>DRAG TO ADD</span></div>
-            <div class="palette-list" data-schedule-tray>
-              {palette.map((block) => <div class:list={['palette-block', `accent-${block.accent}`]} draggable="true" data-palette-block data-block-id={block.id} data-label={block.label}><span class="palette-block__dot"></span><span>{block.label}</span><span class="palette-block__grip" aria-hidden="true">⠿</span></div>)}
-            </div>
-            <div class="schedule-help"><span class="schedule-help__mark">↕</span><p>Drop into the grid. Drag the lower edge to resize. Blocks stay on the half-hour and can never overlap.</p></div>
-            <div class="schedule-palette__foot"><span>10:00—22:00 / LOCAL AGENDA</span><span>MAX 04:00</span></div>
-          </aside>
-          <section class="schedule-editor" aria-label="Editable schedule">
-            <div class="schedule-editor__topline"><div><span class="schedule-status-dot"></span><span data-schedule-status>DEFAULT AGENDA</span></div><span>5 BLOCKS / 24 SLOTS</span></div>
-            <div class="schedule-calendar">
-              <div class="schedule-times" aria-hidden="true">{times.slice(0, -1).map((time, index) => <span style={`--time-row: ${index + 1}`}>{time}</span>)}</div>
-              <div class="schedule-grid" data-schedule-grid data-slot-count="24" style="--slot-count: 24">
-                <div class="schedule-lunch" style="--start: 4; --span: 2"><span>LUNCH / OPEN TIME</span></div>
-                {defaultBlocks.map((block) => <div class:list={['schedule-block', `accent-${block.accent}`]} draggable="true" data-schedule-block data-block-id={block.id} data-label={block.label} data-start={block.start} data-duration={block.duration} style={`--start: ${block.start}; --span: ${block.duration}`}>
-                  <span class="schedule-block__handle schedule-block__handle--top" data-resize="top" aria-hidden="true"></span>
-                  <div class="schedule-block__body"><span class="schedule-block__time">{times[block.start]}—{times[block.start + block.duration]}</span><strong>{block.label}</strong></div>
-                  <button type="button" class="schedule-block__remove" data-remove-schedule-block aria-label={`Remove ${block.label}`}>×</button>
-                  <span class="schedule-block__handle schedule-block__handle--bottom" data-resize="bottom" aria-hidden="true"></span>
-                </div>)}
-                <div class="schedule-drop-hint" data-schedule-drop-hint>DROP A BLOCK<br /><span>ON A HALF-HOUR</span></div>
-              </div>
-            </div>
-            <div class="schedule-editor__actions"><button class="button button--primary" type="button" data-save-schedule>Save agenda <span aria-hidden="true">↓</span></button><button class="button" type="button" data-export-schedule>Export .txt <span aria-hidden="true">↗</span></button><button class="text-button" type="button" data-reset-schedule>Reset default</button></div>
-          </section>
+        <div class="home-destinations" aria-label="Mini CCC sections">
+          {destinations.map((destination) => (
+            <a class:list={['home-card', `accent-${destination.accent}`]} href={destination.href}>
+              <span class="home-card__index">{destination.index}</span>
+              <span class="home-card__body">
+                <span class="home-card__label">{destination.label}</span>
+                <strong>{destination.title}</strong>
+                <span class="home-card__description">{destination.description}</span>
+              </span>
+              <span class="home-card__arrow" aria-hidden="true">↗</span>
+            </a>
+          ))}
         </div>
       </section>
-      <footer class="site-footer section-pad"><div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div><span class="footer-note">A tiny conference for big enough ideas.</span></footer>
+      <footer class="site-footer section-pad"><div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div><span class="footer-note">Make a day of it.</span></footer>
     </main>
   </div>
 </BaseLayout>
