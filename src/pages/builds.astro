@@ -21,7 +21,7 @@ const orderedProjects = [...projects].sort((a, b) => b.votes - a.votes);
           <span class="catalog-count" data-project-count>{projects.length} builds</span>
         </div>
         <div class="project-grid" data-project-grid>{orderedProjects.map((project) => <ProjectCard project={project} />)}</div>
-        <div class="favorite-export" data-favorite-export-panel hidden><button class="button favorite-export__button" type="button" data-favorite-export disabled>Export favorite titles <span aria-hidden="true">↓</span></button></div>
+        <div class="favorite-export" data-favorite-export-panel hidden><button class="button favorite-export__button" type="button" data-favorite-export disabled>Export favorite titles <span class="download-icon" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><path d="M10 2v10m0 0 4-4m-4 4-4-4M3 14v3h14v-3" /></svg></span></button></div>
         <div class="projects-empty" data-projects-empty hidden><ProjectViz visual="radar" accent="lime" /><h3>No builds on this frequency.</h3><p>Try another search, or favorite a few builds to start your shortlist.</p></div>
       </section>
       <footer class="site-footer section-pad"><div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div></footer>
