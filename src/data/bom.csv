@@ -1,4 +1,11 @@
 Build #,Build,Item #,Item,Item cost EUR,Purchase URL
+21,LoRa Network,1,Elecrow ThinkNode M2 LoRa transceiver with ESP32-S3 and 1.3in OLED,24.90,https://www.berrybase.de/en/elecrow-thinknode-m2-lora-transceiver-meshtastic-esp32-s3-sx1262-oled-1-3-zoll-bt5-wifi-5v
+22,E-Paper Display,1,Elecrow CrowPanel 1.54in e-paper HMI display with ESP32-S3,16.90,https://www.berrybase.de/en/elecrow-crowpanel-e-paper-hmi-display-1.54-inch-152x152-resolution-esp32-s3-spi-black-and-white
+23,TFT Display,1,Adafruit ESP32-S3 Reverse TFT Feather,24.90,https://www.berrybase.de/en/adafruit-esp32-s3-reverse-tft-feather
+24,Round LCD Display,1,Waveshare ESP32-C3 with 0.71in round IPS display,13.50,https://www.berrybase.de/en/waveshare-esp32-c3-round-display-dev-board-0.71-ips-risc-v-160-mhz-wi-fi-bluetooth-5-3.3v
+25,Touch AMOLED Display,1,Waveshare ESP32-S3 with 1.91in touch AMOLED display,35.90,https://www.berrybase.de/en/waveshare-esp32-s3-microcontroller-240-mhz-16-mb-flash-wi-fi-bt5-1.91-inch-amoled-display
+26,Touch IPS LoRa Display,1,Elecrow CrowPanel Advance 3.5in IPS touch display with ESP32-S3 and LoRa,37.90,https://www.berrybase.de/en/elecrow-crowpanel-advance-3.5-esp32-hmi-ips-touch-display-ai-meshtastic-sx1262-lora-480x320
+27,Round Touch IPS Display,1,Elecrow CrowPanel 1.28in round IPS touchscreen smart knob,36.90,https://www.berrybase.de/en/elecrow-crowpanel-1-28-zoll-smart-knob-ips-touchscreen-esp32-hmi-drehgeber-home-assistant-5v
 1,Simon Memory Console,1,Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi/raspberry-pi-microcontroller/
 1,Simon Memory Console,2,4x arcade button,11.60,https://www.berrybase.de/en/arcade-button-44mm-beleuchtet-led-12v-dc
 1,Simon Memory Console,3,16-LED ring,4.80,https://www.berrybase.de/en/neopixel-ring-with-16-ws2812-5050-rgb-leds

@@ -20,6 +20,7 @@ export type Project = {
   items: BomItem[];
   total: number;
   votes: number;
+  featuredRank?: number;
 };
 
 function parseCsv(input: string): string[][] {
@@ -68,6 +69,13 @@ function slugify(value: string) {
 }
 
 const metadata: Record<string, Omit<Project, 'number' | 'name' | 'slug' | 'items' | 'total'>> = {
+  'LoRa Network': { tag: 'SIGNAL / MESH', kind: 'signal', summary: 'A pocket mesh node for messages beyond cellular range.', description: 'An ESP32-S3, SX1262 LoRa radio, and OLED become a compact Meshtastic node for experimenting with off-grid communication.', accent: 'lime', visual: 'ticker', votes: 0, featuredRank: 1 },
+  'E-Paper Display': { tag: 'DISPLAY / LOW POWER', kind: 'interface', summary: 'A tiny screen that keeps its image without keeping the power on.', description: 'A 1.54-inch monochrome e-paper panel and ESP32-S3 make a low-power status display, badge, or miniature information board.', accent: 'orange', visual: 'badge', votes: 0, featuredRank: 2 },
+  'TFT Display': { tag: 'DISPLAY / INPUT', kind: 'interface', summary: 'A compact colour screen with buttons ready for interaction.', description: 'An ESP32-S3 Feather with a reverse-mounted colour TFT and three buttons becomes a pocket-sized interface for menus, games, and data.', accent: 'blue', visual: 'terminal', votes: 0, featuredRank: 3 },
+  'Round LCD Display': { tag: 'DISPLAY / ROUND', kind: 'interface', summary: 'A tiny circular canvas for gauges, clocks, and status rings.', description: 'A 0.71-inch round IPS display driven by an ESP32-C3 creates a compact dashboard for animated instruments and indicators.', accent: 'pink', visual: 'spaceship', votes: 0, featuredRank: 4 },
+  'Touch AMOLED Display': { tag: 'DISPLAY / TOUCH', kind: 'interface', summary: 'Crisp colour and touch in a badge-sized control surface.', description: 'A 1.91-inch AMOLED touchscreen and ESP32-S3 form a vivid miniature interface for badges, controls, and animated dashboards.', accent: 'pink', visual: 'amoled', votes: 0, featuredRank: 5 },
+  'Touch IPS LoRa Display': { tag: 'SIGNAL / TOUCH', kind: 'signal', summary: 'A touch-first Meshtastic console with LoRa built in.', description: 'A 3.5-inch IPS touchscreen, ESP32-S3, and SX1262 LoRa radio make a self-contained console for mesh messaging and connected tools.', accent: 'lime', visual: 'radar', votes: 0, featuredRank: 6 },
+  'Round Touch IPS Display': { tag: 'INTERFACE / KNOB', kind: 'interface', summary: 'Touch, turn, and press a circular screen built for physical control.', description: 'A round IPS touchscreen, rotary encoder, and ESP32 combine into a tactile controller for smart-home scenes, menus, and instruments.', accent: 'blue', visual: 'deck', votes: 0, featuredRank: 7 },
   'Simon Memory Console': { tag: 'PLAY / INPUT', kind: 'play', summary: 'A pocket memory game with arcade muscle memory.', description: 'A four-button memory game uses RGB lights to show the sequence and a buzzer to mark mistakes.', accent: 'lime', visual: 'simon', votes: 12 },
   'Wi-Fi LED News Ticker': { tag: 'SIGNAL / WEB', kind: 'signal', summary: 'A tiny scrolling window onto the outside world.', description: 'A Wi-Fi-connected LED matrix scrolls live headlines across a small display.', accent: 'blue', visual: 'ticker', votes: 9 },
   'Retro Matrix Terminal': { tag: 'SIGNAL / DISPLAY', kind: 'signal', summary: 'Two red matrices for dashboards, prompts, and vibes.', description: 'Two red LED matrices show dashboards, scrolling prompts, and compact status displays.', accent: 'orange', visual: 'terminal', votes: 8 },

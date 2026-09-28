@@ -6,7 +6,10 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ProjectViz from '../components/ProjectViz.astro';
 import { projects } from '../data/projects';
 
-const orderedProjects = [...projects].sort((a, b) => b.votes - a.votes);
+const orderedProjects = [...projects].sort((a, b) => {
+  const featuredDifference = (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER);
+  return featuredDifference || b.votes - a.votes;
+});
 ---
 <BaseLayout title="Builds" description="A catalogue of tiny electronics builds for Mini CCC.">
   <div class="page-shell">
