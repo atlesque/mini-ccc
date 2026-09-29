@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import FavoriteButton from '../../components/FavoriteButton.astro';
-import ProjectViz from '../../components/ProjectViz.astro';
-import { eventImage, projects } from '../../data/projects';
+import BuildArt from '../../components/BuildArt.astro';
+import { projects } from '../../data/projects';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -22,8 +22,7 @@ if (!project) return Astro.redirect('/');
         <FavoriteButton projectId={project.slug} projectName={project.name} />
       </div>
       <div slot="media" class="detail-art">
-        <div class="detail-art__image"><img src={eventImage} alt="Illustrated electronics workbench for Mini CCC" /></div>
-        <div class="detail-art__viz"><ProjectViz visual={project.visual} accent={project.accent} large /></div>
+        <BuildArt project={project} variant="detail" />
       </div>
     </Header>
     <main class="detail-page">

@@ -1,4 +1,5 @@
 import rawCsv from './bom.csv?raw';
+import metadata from './project-metadata.json';
 
 export type BomItem = {
   number: number;
@@ -68,42 +69,15 @@ function slugify(value: string) {
     .replace(/^-|-$/g, '');
 }
 
-const metadata: Record<string, Omit<Project, 'number' | 'name' | 'slug' | 'items' | 'total'>> = {
-  'LoRa Network': { tag: 'SIGNAL / MESH', kind: 'signal', summary: 'A pocket mesh node for messages beyond cellular range.', description: 'An ESP32-S3, SX1262 LoRa radio, and OLED become a compact Meshtastic node for experimenting with off-grid communication.', accent: 'lime', visual: 'ticker', votes: 0, featuredRank: 1 },
-  'E-Paper Display': { tag: 'DISPLAY / LOW POWER', kind: 'interface', summary: 'A tiny screen that keeps its image without keeping the power on.', description: 'A 1.54-inch monochrome e-paper panel and ESP32-S3 make a low-power status display, badge, or miniature information board.', accent: 'orange', visual: 'badge', votes: 0, featuredRank: 2 },
-  'TFT Display': { tag: 'DISPLAY / INPUT', kind: 'interface', summary: 'A compact colour screen with buttons ready for interaction.', description: 'An ESP32-S3 Feather with a reverse-mounted colour TFT and three buttons becomes a pocket-sized interface for menus, games, and data.', accent: 'blue', visual: 'terminal', votes: 0, featuredRank: 3 },
-  'Round LCD Display': { tag: 'DISPLAY / ROUND', kind: 'interface', summary: 'A tiny circular canvas for gauges, clocks, and status rings.', description: 'A 0.71-inch round IPS display driven by an ESP32-C3 creates a compact dashboard for animated instruments and indicators.', accent: 'pink', visual: 'spaceship', votes: 0, featuredRank: 4 },
-  'Touch AMOLED Display': { tag: 'DISPLAY / TOUCH', kind: 'interface', summary: 'Crisp colour and touch in a badge-sized control surface.', description: 'A 1.91-inch AMOLED touchscreen and ESP32-S3 form a vivid miniature interface for badges, controls, and animated dashboards.', accent: 'pink', visual: 'amoled', votes: 0, featuredRank: 5 },
-  'Touch IPS LoRa Display': { tag: 'SIGNAL / TOUCH', kind: 'signal', summary: 'A touch-first Meshtastic console with LoRa built in.', description: 'A 3.5-inch IPS touchscreen, ESP32-S3, and SX1262 LoRa radio make a self-contained console for mesh messaging and connected tools.', accent: 'lime', visual: 'radar', votes: 0, featuredRank: 6 },
-  'Round Touch IPS Display': { tag: 'INTERFACE / KNOB', kind: 'interface', summary: 'Touch, turn, and press a circular screen built for physical control.', description: 'A round IPS touchscreen, rotary encoder, and ESP32 combine into a tactile controller for smart-home scenes, menus, and instruments.', accent: 'blue', visual: 'deck', votes: 0, featuredRank: 7 },
-  'Simon Memory Console': { tag: 'PLAY / INPUT', kind: 'play', summary: 'A pocket memory game with arcade muscle memory.', description: 'A four-button memory game uses RGB lights to show the sequence and a buzzer to mark mistakes.', accent: 'lime', visual: 'simon', votes: 12 },
-  'Wi-Fi LED News Ticker': { tag: 'SIGNAL / WEB', kind: 'signal', summary: 'A tiny scrolling window onto the outside world.', description: 'A Wi-Fi-connected LED matrix scrolls live headlines across a small display.', accent: 'blue', visual: 'ticker', votes: 9 },
-  'Retro Matrix Terminal': { tag: 'SIGNAL / DISPLAY', kind: 'signal', summary: 'Two red matrices for dashboards, prompts, and vibes.', description: 'Two red LED matrices show dashboards, scrolling prompts, and compact status displays.', accent: 'orange', visual: 'terminal', votes: 8 },
-  'Arcade Reaction Timer': { tag: 'PLAY / SPEED', kind: 'play', summary: 'One button, one buzzer, one very competitive room.', description: 'An arcade button starts the timer; press it when the signal changes to measure your reaction time.', accent: 'pink', visual: 'timer', votes: 14 },
-  'LED Decision Machine': { tag: 'GLOW / RANDOM', kind: 'glow', summary: 'An illuminated oracle for the indecisive.', description: 'Press the button and let a ring of LEDs make the decision for you.', accent: 'lime', visual: 'decision', votes: 11 },
-  "Conway's Game of Life Frame": { tag: 'GLOW / SYSTEMS', kind: 'glow', summary: 'Emergent life in a tiny square of RGB pixels.', description: 'A square RGB panel runs Conway’s Game of Life, turning simple rules into shifting patterns.', accent: 'blue', visual: 'life', votes: 7 },
-  'RGB Pixel-Art Frame': { tag: 'GLOW / ART', kind: 'glow', summary: 'A programmable canvas with exactly 64 pixels.', description: 'A 64-pixel RGB frame displays small programmable images and animations.', accent: 'orange', visual: 'pixel', votes: 6 },
-  'Mini OLED Game Console': { tag: 'PLAY / POCKET', kind: 'play', summary: 'Small pixels, real stakes, built from a handful of parts.', description: 'A pocket game console combines a joystick, two buttons, and a monochrome OLED screen.', accent: 'pink', visual: 'console', votes: 13 },
-  'Touch-Controlled Colour Synth': { tag: 'SOUND / TOUCH', kind: 'sound', summary: 'Touch becomes input, sound, and colour.', description: 'Touch sensors trigger tones and changing colors on a small interactive instrument.', accent: 'blue', visual: 'synth', votes: 10 },
-  'Build-Status Light Sculpture': { tag: 'GLOW / DEVOPS', kind: 'glow', summary: 'Turn a build pipeline into ambient sculpture.', description: 'Three light rings turn build, test, and deploy states into a visible status sculpture.', accent: 'lime', visual: 'status', votes: 5 },
-  'E-Paper Hacker Badge': { tag: 'BADGE / LOW POWER', kind: 'badge', summary: 'A name, handle, or status that stays visible.', description: 'An e-paper badge shows a name, handle, or status while using almost no power between updates.', accent: 'orange', visual: 'badge', votes: 8 },
-  'Music Spectrum Display': { tag: 'SOUND / REACTIVE', kind: 'sound', summary: 'A microphone listens while the matrix draws the beat.', description: 'A microphone drives the LED matrix to visualize the frequency and rhythm of nearby sound.', accent: 'pink', visual: 'spectrum', votes: 9 },
-  'Round Spaceship Instrument': { tag: 'INTERFACE / ROUND', kind: 'interface', summary: 'A tiny circular dashboard from an optimistic spacecraft.', description: 'A round display creates a compact spacecraft-style dashboard for a single-board computer.', accent: 'blue', visual: 'spaceship', votes: 4 },
-  'Tiny Touchscreen Control Deck': { tag: 'INTERFACE / TOUCH', kind: 'interface', summary: 'A pocket control surface for whatever the group invents.', description: 'A small touchscreen provides controls for toggles, meters, and macros.', accent: 'orange', visual: 'deck', votes: 6 },
-  'AMOLED Cyber Badge': { tag: 'BADGE / DISPLAY', kind: 'badge', summary: 'Saturated motion in a badge-sized footprint.', description: 'A bright AMOLED badge displays crisp graphics and animated identity in a compact footprint.', accent: 'pink', visual: 'amoled', votes: 7 },
-  'Ultrasonic Radar Display': { tag: 'SENSOR / GLOW', kind: 'sensor', summary: 'Map the room with sound and paint it with light.', description: 'An ultrasonic sensor maps nearby objects while an LED sweep shows their distance and direction.', accent: 'lime', visual: 'radar', votes: 12 },
-  '60-Pixel Clock Halo': { tag: 'GLOW / TIME', kind: 'glow', summary: 'An LED ring that turns time into a soft orbit.', description: 'A 60-pixel LED ring displays the time as a soft orbit of light.', accent: 'blue', visual: 'clock', votes: 9 },
-  'Electronic Compass Halo': { tag: 'SENSOR / ORIENTATION', kind: 'sensor', summary: 'A compass sensor gives the halo a sense of north.', description: 'A compass sensor controls a glowing halo that points north as the device rotates.', accent: 'orange', visual: 'compass', votes: 5 },
-  'LED Light-Painting Wand': { tag: 'GLOW / CAMERA', kind: 'glow', summary: 'Leave traces in the dark with a portable pixel wand.', description: 'A portable strip of LEDs creates long-exposure light trails when moved through the dark.', accent: 'pink', visual: 'wand', votes: 8 },
-  'Thermal Hacker Receipt Printer': { tag: 'OUTPUT / PAPER', kind: 'interface', summary: 'Print the things the group does, decides, or remembers.', description: 'A thermal printer turns votes, notes, and small decisions into physical receipts.', accent: 'orange', visual: 'printer', votes: 11 },
-};
+const metadataByName = metadata as Record<string, Omit<Project, 'number' | 'name' | 'slug' | 'items' | 'total'>>;
 
 const rows = parseCsv(rawCsv).slice(1);
 const buildNames = [...new Set(rows.map((row) => row[1]))];
 
 export const projects: Project[] = buildNames.map((name, index) => {
   const projectRows = rows.filter((row) => row[1] === name);
-  const meta = metadata[name];
+  const meta = metadataByName[name];
+  if (!meta) throw new Error(`Missing project metadata for build: ${name}`);
   const items = projectRows.map((row) => ({
     number: Number(row[2]),
     name: row[3],
@@ -122,7 +96,6 @@ export const projects: Project[] = buildNames.map((name, index) => {
   };
 });
 
-export const eventImage = '/generated/f29e14d7_000.png';
 export const totalBudget = Number(projects.reduce((sum, project) => sum + project.total, 0).toFixed(2));
 
 export function getProject(slug: string) {

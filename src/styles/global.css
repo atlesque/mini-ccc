@@ -141,6 +141,17 @@ html[data-theme="light"] .project-viz { background: #16221a; }
 .project-viz--orange { color: var(--orange); }
 .project-viz--pink { color: var(--pink); }
 .project-viz--large { height: 355px; margin: 0; }
+.build-art--lime { --build-art-accent: var(--acid); }
+.build-art--blue { --build-art-accent: var(--blue); }
+.build-art--orange { --build-art-accent: var(--orange); }
+.build-art--pink { --build-art-accent: var(--pink); }
+.build-art--card { position: relative; height: 185px; margin: 15px 0 17px; overflow: hidden; border: 1px solid rgba(244, 245, 238, .16); background: #0d110e; }
+.build-art--card .project-viz { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; border: 0; }
+.build-art__image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.build-art--card .build-art__image { object-position: center; }
+.build-art--detail { position: absolute; inset: 4% 5% 6% 4%; overflow: hidden; border: 1px solid var(--line-strong); background: #0d110e; transform: rotate(-3deg); box-shadow: 18px 18px 0 var(--build-art-accent); }
+.build-art--detail .project-viz { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; border: 0; }
+.build-art--detail .build-art__image { object-position: center; }
 .viz-grid { position: absolute; inset: 0; opacity: .19; background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px); background-size: 27px 27px; }
 .viz-grid::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 55%, currentColor 0, transparent 45%); opacity: .12; }
 .viz-ring { position: relative; width: 108px; height: 108px; border: 3px solid currentColor; border-radius: 50%; box-shadow: 0 0 23px currentColor, inset 0 0 15px currentColor; }
@@ -218,6 +229,16 @@ html[data-theme="light"] .project-viz { background: #16221a; }
   .page-shell--detail .bom-layout { align-items: stretch; }
   .detail-intro { margin-bottom: 72px; }
   .detail-description { font-size: clamp(30px, 8vw, 37px); }
+}
+
+/* Generated build art uses one crop-safe source in cards and detail heroes. */
+.detail-art { width: 100%; min-height: 0; aspect-ratio: 3 / 2; }
+
+@media (max-width: 760px) {
+  .build-art--card { height: 145px; margin: 11px 0 13px; }
+  .page-header--detail .page-header__media { width: 92%; }
+  .detail-art { width: 100%; min-height: 0; }
+  .build-art--detail { box-shadow: 11px 11px 0 var(--build-art-accent); }
 }
 
 /* Shared navigation */

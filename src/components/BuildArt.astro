@@ -1,0 +1,17 @@
+---
+import ProjectViz from './ProjectViz.astro';
+import type { Project } from '../data/projects';
+
+type Props = {
+  project: Pick<Project, 'slug' | 'name' | 'visual' | 'accent'>;
+  variant?: 'card' | 'detail';
+};
+
+const { project, variant = 'card' } = Astro.props;
+const images = import.meta.glob<string>('../assets/builds/*.webp', { eager: true, query: '?url', import: 'default' });
+const imagePath = images[`../assets/builds/${project.slug}.webp`];
+---
+<div class:list={['build-art', `build-art--${variant}`, `build-art--${project.accent}`]}>
+  {!imagePath && <ProjectViz visual={project.visual} accent={project.accent} large={variant === 'detail'} />}
+  {imagePath && <img class="build-art__image" src={imagePath} alt={`${project.name} electronics build illustration`} loading={variant === 'card' ? 'lazy' : 'eager'} decoding="async" />}
+</div>
