@@ -18,7 +18,8 @@ for (const envPath of ['.env.local', '.env']) {
   }
 }
 
-const model = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-1';
+const model = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
+const quality = process.env.OPENAI_IMAGE_QUALITY || 'medium';
 
 function parseCsv(input) {
   const rows = [];
@@ -148,7 +149,7 @@ async function requestImage(prompt, apiKey) {
         model,
         prompt,
         size: BUILD_IMAGE_SIZE,
-        quality: 'high',
+        quality,
         background: 'opaque',
         output_format: 'webp',
       }),

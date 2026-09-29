@@ -9,7 +9,7 @@ The build list and each build detail page use the same generated illustration. T
 
 The runner submits one independent OpenAI image request per build, with up to three requests in flight. It skips valid existing images. Add `-- --force` to replace them, or `-- --slug=lora-network` to generate one build. Use `-- --prompts-only` to print the prompt text without calling the API; add a slug to inspect just one prompt.
 
-The runner saves WebP assets under `src/assets/builds/`. It requests a 1536×1024 opaque image, then checks the returned file type and exact dimensions before saving it. A failed or incorrectly sized response is reported and does not replace the site's existing illustration. The API key stays in the local script process and is never included in the generated site. Increase or reduce parallel requests with `-- --concurrency=1` through `-- --concurrency=6`.
+The runner defaults to GPT Image 2 at medium quality and saves WebP assets under `src/assets/builds/`. Set `OPENAI_IMAGE_MODEL` or `OPENAI_IMAGE_QUALITY` in `.env.local` to override those defaults. It requests a 1536×1024 opaque image, then checks the returned file type and exact dimensions before saving it. A failed or incorrectly sized response is reported and does not replace the site's existing illustration. The API key stays in the local script process and is never included in the generated site. Increase or reduce parallel requests with `-- --concurrency=1` through `-- --concurrency=6`.
 
 ## Display behavior
 
