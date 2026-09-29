@@ -3,3 +3,6 @@ dist/
 .astro/
 .pnpm-store/
 public/generated/*.json
+.env
+.env.*
+!.env.example

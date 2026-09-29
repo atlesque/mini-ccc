@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "generate:build-images": "node scripts/generate-build-images.mjs"
   },
   "dependencies": {
     "astro": "latest"
