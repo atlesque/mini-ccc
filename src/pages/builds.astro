@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
-import BrandMark from '../components/BrandMark.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ProjectViz from '../components/ProjectViz.astro';
 import { projects } from '../data/projects';
@@ -34,7 +33,6 @@ const orderedProjects = [...projects].sort((a, b) => {
         <div class="favorite-export" data-favorite-export-panel hidden><button class="button favorite-export__button" type="button" data-favorite-export disabled>Export favorite titles <Download class="download-icon" size={15} stroke-width={1.6} aria-hidden="true" focusable="false" /></button></div>
         <div class="projects-empty" data-projects-empty hidden><ProjectViz visual="radar" accent="lime" /><h3>No builds on this frequency.</h3><p>Try another search, or favorite a few builds to start your shortlist.</p></div>
       </section>
-      <footer class="site-footer section-pad"><div class="footer-brand"><BrandMark /><span>mini <strong>CCC</strong></span></div></footer>
     </main>
   </div>
 </BaseLayout>
