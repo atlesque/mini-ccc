@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import ProjectViz from './ProjectViz.astro';
 import type { Project } from '../data/projects';
 
@@ -8,10 +10,27 @@ type Props = {
 };
 
 const { project, variant = 'card' } = Astro.props;
-const images = import.meta.glob<string>('../assets/builds/*.webp', { eager: true, query: '?url', import: 'default' });
-const imagePath = images[`../assets/builds/${project.slug}.webp`];
+const images = import.meta.glob<ImageMetadata>('../assets/builds/*.webp', { eager: true, import: 'default' });
+const image = images[`../assets/builds/${project.slug}.webp`];
+const sizes = variant === 'card'
+  ? '(max-width: 430px) calc(96vw - 58px), (max-width: 760px) calc(48vw - 45px), (max-width: 1100px) calc(32vw - 60px), (max-width: 1439px) calc(24vw - 66px), 280px'
+  : '(max-width: 760px) 76vw, (max-width: 1100px) calc(40.5vw - 23px), (max-width: 1439px) calc(40.5vw - 40px), 544px';
+const widths = variant === 'card' ? [320, 480, 640, 800] : [320, 480, 640, 960, 1200];
 ---
-<div class:list={['build-art', `build-art--${variant}`, `build-art--${project.accent}`]}>
-  {!imagePath && <ProjectViz visual={project.visual} accent={project.accent} large={variant === 'detail'} />}
-  {imagePath && <img class="build-art__image" src={imagePath} alt={`${project.name} electronics build illustration`} loading={variant === 'card' ? 'lazy' : 'eager'} decoding="async" />}
+<div class:list={['build-art', `build-art--${variant}`, `build-art--${project.accent}`, image && 'build-art--loading']} data-build-art={image ? true : undefined}>
+  {!image && <ProjectViz visual={project.visual} accent={project.accent} large={variant === 'detail'} />}
+  {image && (
+    <Picture
+      class="build-art__image"
+      src={image}
+      alt={`${project.name} electronics build illustration`}
+      formats={['avif', 'webp']}
+      widths={widths}
+      sizes={sizes}
+      quality={75}
+      loading={variant === 'card' ? 'lazy' : 'eager'}
+      decoding="async"
+      fetchpriority={variant === 'detail' ? 'high' : 'auto'}
+    />
+  )}
 </div>

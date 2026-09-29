@@ -15,6 +15,23 @@ function readFavorites() {
   return new Set(readJson<string[]>(FAVORITES_KEY, []));
 }
 
+function initBuildArtLoaders() {
+  document.querySelectorAll<HTMLElement>('[data-build-art]').forEach((container) => {
+    const image = container.querySelector('img');
+    if (!image) {
+      container.classList.remove('build-art--loading');
+      return;
+    }
+
+    const finishLoading = () => container.classList.remove('build-art--loading');
+    if (image.complete) finishLoading();
+    else {
+      image.addEventListener('load', finishLoading, { once: true });
+      image.addEventListener('error', finishLoading, { once: true });
+    }
+  });
+}
+
 function writeFavorites(favorites: Set<string>) {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
 }
@@ -383,3 +400,4 @@ colorSchemeQuery?.addEventListener('change', () => {
 updateFavoriteUi();
 applyFilters();
 initSchedule();
+initBuildArtLoaders();

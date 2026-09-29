@@ -11,7 +11,8 @@
     "generate:build-images": "node scripts/generate-build-images.mjs"
   },
   "dependencies": {
-    "astro": "latest"
+    "astro": "latest",
+    "sharp": "0.35.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
