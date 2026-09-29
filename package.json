@@ -11,6 +11,7 @@
     "generate:build-images": "node scripts/generate-build-images.mjs"
   },
   "dependencies": {
+    "@lucide/astro": "^1.48.0",
     "astro": "latest",
     "sharp": "0.35.4"
   },

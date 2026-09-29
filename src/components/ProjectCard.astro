@@ -2,6 +2,7 @@
 import BuildArt from './BuildArt.astro';
 import FavoriteButton from './FavoriteButton.astro';
 import type { Project } from '../data/projects';
+import { ArrowUpRight } from '@lucide/astro';
 
 type Props = {
   project: Project;
@@ -22,7 +23,7 @@ const { project } = Astro.props;
     <div class="project-card__topline">
       <span class="project-number">{String(project.number).padStart(2, '0')}</span>
       <span class="project-tag">{project.tag}</span>
-      <span class="project-arrow" aria-hidden="true">↗</span>
+      <ArrowUpRight class="project-arrow" size={17} stroke-width={1.5} aria-hidden="true" focusable="false" />
     </div>
     <BuildArt project={project} />
     <div class="project-card__copy">

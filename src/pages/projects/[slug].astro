@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import FavoriteButton from '../../components/FavoriteButton.astro';
 import BuildArt from '../../components/BuildArt.astro';
 import { projects } from '../../data/projects';
+import { ArrowLeft, ExternalLink } from '@lucide/astro';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -41,7 +42,7 @@ if (!project) return Astro.redirect('/');
               {project.items.map((item) => (
                 <div class="bom-row">
                   <div><span class="bom-index">{String(item.number).padStart(2, '0')}</span><span>{item.name}</span></div>
-                  <div><strong>€{item.cost.toFixed(2)}</strong><a href={item.url} target="_blank" rel="noreferrer" aria-label={`Buy ${item.name}`}>↗</a></div>
+                  <div><strong>€{item.cost.toFixed(2)}</strong><a href={item.url} target="_blank" rel="noreferrer" aria-label={`Buy ${item.name}`}><ExternalLink size={14} stroke-width={1.7} aria-hidden="true" focusable="false" /></a></div>
                 </div>
               ))}
             </div>
@@ -52,7 +53,7 @@ if (!project) return Astro.redirect('/');
 
       <section class="detail-next section-pad">
         <div><h2>Find the next<br /><em>rabbit hole.</em></h2></div>
-        <a class="button button--primary" href="/builds">Back to all builds <span aria-hidden="true">↗</span></a>
+        <a class="button button--primary" href="/builds">Back to all builds <ArrowLeft size={15} stroke-width={1.7} aria-hidden="true" focusable="false" /></a>
       </section>
     </main>
   </div>

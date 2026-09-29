@@ -1,6 +1,7 @@
 ---
 import ProjectViz from './ProjectViz.astro';
 import type { Cocktail, CuratedVideo } from '../data/content';
+import { ExternalLink } from '@lucide/astro';
 
 type Props = {
   item: Cocktail | CuratedVideo;
@@ -25,7 +26,7 @@ const isVideo = type === 'video';
     <h2>{isVideo ? (item as CuratedVideo).title : (item as Cocktail).name}</h2>
     <p>{item.summary}</p>
     {isVideo ? (
-      <a class="content-card__link" href={(item as CuratedVideo).url} target="_blank" rel="noreferrer"><span>Open on YouTube</span><span class="content-card__link-icon" aria-hidden="true">↗</span></a>
+      <a class="content-card__link" href={(item as CuratedVideo).url} target="_blank" rel="noreferrer"><span>Open on YouTube</span><ExternalLink class="content-card__link-icon" size={16} stroke-width={1.7} aria-hidden="true" focusable="false" /></a>
     ) : (
       <div class="cocktail-details">
         <div><span>INGREDIENTS</span><p>{(item as Cocktail).ingredients.join(' · ')}</p></div>

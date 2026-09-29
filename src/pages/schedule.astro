@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import BrandMark from '../components/BrandMark.astro';
+import { ArrowUpDown, Download, GripVertical, Save, X } from '@lucide/astro';
 
 const palette = [
   { id: 'cocktails', label: 'Cocktail making', short: 'COCKTAILS', accent: 'orange' },
@@ -36,9 +37,9 @@ const times = Array.from({ length: 25 }, (_, index) => {
           <aside class="schedule-palette" aria-label="Available schedule blocks">
             <div class="schedule-panel-heading"><span>AVAILABLE BLOCKS</span><span>DRAG TO ADD</span></div>
             <div class="palette-list" data-schedule-tray>
-              {palette.map((block) => <div class:list={['palette-block', `accent-${block.accent}`]} draggable="true" data-palette-block data-block-id={block.id} data-label={block.label}><span class="palette-block__dot"></span><span>{block.label}</span><span class="palette-block__grip" aria-hidden="true">⠿</span></div>)}
+              {palette.map((block) => <div class:list={['palette-block', `accent-${block.accent}`]} draggable="true" data-palette-block data-block-id={block.id} data-label={block.label}><span class="palette-block__dot"></span><span>{block.label}</span><span class="palette-block__grip" aria-hidden="true"><GripVertical size={14} stroke-width={1.7} focusable="false" /></span></div>)}
             </div>
-            <div class="schedule-help"><span class="schedule-help__mark">↕</span><p>Drop into the grid. Drag the lower edge to resize. Blocks stay on the half-hour and can never overlap.</p></div>
+            <div class="schedule-help"><span class="schedule-help__mark" aria-hidden="true"><ArrowUpDown size={17} stroke-width={1.6} focusable="false" /></span><p>Drop into the grid. Drag the lower edge to resize. Blocks stay on the half-hour and can never overlap.</p></div>
             <div class="schedule-palette__foot"><span>10:00—22:00 / LOCAL AGENDA</span><span>MAX 04:00</span></div>
           </aside>
           <section class="schedule-editor" aria-label="Editable schedule">
@@ -50,13 +51,13 @@ const times = Array.from({ length: 25 }, (_, index) => {
                 {defaultBlocks.map((block) => <div class:list={['schedule-block', `accent-${block.accent}`]} draggable="true" data-schedule-block data-block-id={block.id} data-label={block.label} data-start={block.start} data-duration={block.duration} style={`--start: ${block.start}; --span: ${block.duration}`}>
                   <span class="schedule-block__handle schedule-block__handle--top" data-resize="top" aria-hidden="true"></span>
                   <div class="schedule-block__body"><span class="schedule-block__time">{times[block.start]}—{times[block.start + block.duration]}</span><strong>{block.label}</strong></div>
-                  <button type="button" class="schedule-block__remove" data-remove-schedule-block aria-label={`Remove ${block.label}`}>×</button>
+                  <button type="button" class="schedule-block__remove" data-remove-schedule-block aria-label={`Remove ${block.label}`}><X size={14} stroke-width={1.8} aria-hidden="true" focusable="false" /></button>
                   <span class="schedule-block__handle schedule-block__handle--bottom" data-resize="bottom" aria-hidden="true"></span>
                 </div>)}
                 <div class="schedule-drop-hint" data-schedule-drop-hint>DROP A BLOCK<br /><span>ON A HALF-HOUR</span></div>
               </div>
             </div>
-            <div class="schedule-editor__actions"><button class="button button--primary" type="button" data-save-schedule>Save agenda <span aria-hidden="true">↓</span></button><button class="button" type="button" data-export-schedule>Export .txt <span aria-hidden="true">↗</span></button><button class="text-button" type="button" data-reset-schedule>Reset default</button></div>
+            <div class="schedule-editor__actions"><button class="button button--primary" type="button" data-save-schedule>Save agenda <Save size={14} stroke-width={1.7} aria-hidden="true" focusable="false" /></button><button class="button" type="button" data-export-schedule>Export .txt <Download size={14} stroke-width={1.7} aria-hidden="true" focusable="false" /></button><button class="text-button" type="button" data-reset-schedule>Reset default</button></div>
           </section>
         </div>
       </section>
