@@ -9,6 +9,16 @@ type Props = {
 };
 
 const { project } = Astro.props;
+const categoryLabels: Record<string, string> = {
+  play: 'PLAY',
+  glow: 'GLOW',
+  signal: 'SIGNAL',
+  sound: 'SOUND',
+  sensor: 'SENSORS',
+  interface: 'INTERFACE',
+  badge: 'BADGE',
+};
+const categoryLabel = categoryLabels[project.kind] ?? project.kind.toUpperCase();
 ---
 <article
   class="project-card"
@@ -21,8 +31,7 @@ const { project } = Astro.props;
 >
   <a class="project-card__main" href={`/projects/${project.slug}`}>
     <div class="project-card__topline">
-      <span class="project-number">{String(project.number).padStart(2, '0')}</span>
-      <span class="project-tag">{project.tag}</span>
+      <span class="project-tag">{categoryLabel}</span>
       <ArrowUpRight class="project-arrow" size={17} stroke-width={1.5} aria-hidden="true" focusable="false" />
     </div>
     <BuildArt project={project} />

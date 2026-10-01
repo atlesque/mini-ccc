@@ -129,7 +129,6 @@ h1 em, h2 em { color: var(--acid); font-style: normal; }
 .project-card[hidden] { display: none; }
 .project-card__main { display: block; padding: 15px; }
 .project-card__topline { display: flex; align-items: center; gap: 8px; min-height: 20px; }
-.project-number { color: var(--acid); font-size: 10px; }
 .project-tag { overflow: hidden; color: var(--ink-soft); font-size: 10px; letter-spacing: .09em; text-overflow: ellipsis; white-space: nowrap; }
 .project-arrow { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; margin-left: auto; color: var(--ink-soft); }
 .project-viz { --acid: #c4ff4a; --blue: #7391ff; --orange: #ff956f; --pink: #ff7ec3; position: relative; display: grid; place-items: center; height: 185px; margin: 15px 0 17px; overflow: hidden; background: #0d110e; color: var(--acid); border: 1px solid rgba(244, 245, 238, .16); }
