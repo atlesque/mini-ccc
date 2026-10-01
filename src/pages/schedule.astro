@@ -37,8 +37,7 @@ const times = Array.from({ length: 25 }, (_, index) => {
     <main>
       <section class="schedule-section section-pad">
         <div class="schedule-layout">
-          <section class="schedule-view" aria-label="Read-only schedule">
-            <div class="schedule-view__topline"><div><span class="schedule-status-dot"></span><span>READ-ONLY AGENDA</span></div><span>{defaultBlocks.length} BLOCKS / 24 SLOTS</span></div>
+          <section class="schedule-view" aria-label="Agenda">
             <div class="schedule-calendar">
               <div class="schedule-times" aria-hidden="true">{times.slice(0, -1).map((time, index) => <span style={`--time-row: ${index + 1}`}>{time}</span>)}</div>
               <div class="schedule-grid" style="--slot-count: 24">
