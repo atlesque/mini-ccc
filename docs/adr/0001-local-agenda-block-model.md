@@ -6,7 +6,7 @@ Accepted
 
 ## Decision
 
-The schedule uses five named, pre-made blocks. Each block can appear once in an agenda, may start on a 30-minute boundary, and may last from 30 minutes to four hours. The agenda is saved in the browser with local storage; there is no account or server-side schedule.
+The schedule uses six named, pre-made blocks. Each block can appear once in an agenda, may start on a 30-minute boundary, and may last from 30 minutes to four hours. The agenda is saved in the browser with local storage; there is no account or server-side schedule.
 
 ## Why
 

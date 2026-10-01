@@ -9,14 +9,16 @@ const palette = [
   { id: 'lockpicking', label: 'Lock picking', short: 'LOCK PICKING', accent: 'pink' },
   { id: 'diy-one', label: 'DIY project 1', short: 'DIY 01', accent: 'lime' },
   { id: 'diy-two', label: 'DIY project 2', short: 'DIY 02', accent: 'lime' },
+  { id: 'dinner', label: 'Dinner', short: 'DINNER', accent: 'orange' },
 ];
 
 const defaultBlocks = [
-  { ...palette[0], start: 0, duration: 1 },
-  { ...palette[1], start: 1, duration: 3 },
-  { ...palette[2], start: 6, duration: 2 },
-  { ...palette[3], start: 8, duration: 8 },
-  { ...palette[4], start: 16, duration: 8 },
+  { ...palette[0], start: 0, duration: 2 },
+  { ...palette[1], start: 2, duration: 2 },
+  { ...palette[3], start: 6, duration: 8 },
+  { ...palette[2], start: 14, duration: 2 },
+  { ...palette[5], start: 16, duration: 2 },
+  { ...palette[4], start: 18, duration: 6 },
 ];
 
 const times = Array.from({ length: 25 }, (_, index) => {
@@ -42,7 +44,7 @@ const times = Array.from({ length: 25 }, (_, index) => {
             <div class="schedule-palette__foot"><span>10:00—22:00 / LOCAL AGENDA</span><span>MAX 04:00</span></div>
           </aside>
           <section class="schedule-editor" aria-label="Editable schedule">
-            <div class="schedule-editor__topline"><div><span class="schedule-status-dot"></span><span data-schedule-status>DEFAULT AGENDA</span></div><span>5 BLOCKS / 24 SLOTS</span></div>
+            <div class="schedule-editor__topline"><div><span class="schedule-status-dot"></span><span data-schedule-status>DEFAULT AGENDA</span></div><span>6 BLOCKS / 24 SLOTS</span></div>
             <div class="schedule-calendar">
               <div class="schedule-times" aria-hidden="true">{times.slice(0, -1).map((time, index) => <span style={`--time-row: ${index + 1}`}>{time}</span>)}</div>
               <div class="schedule-grid" data-schedule-grid data-slot-count="24" style="--slot-count: 24">
