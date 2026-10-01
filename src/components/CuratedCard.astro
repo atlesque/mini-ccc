@@ -21,8 +21,7 @@ const isVideo = type === 'video';
   </div>
   <div class="content-card__copy">
     <div class="content-card__meta">
-      <span>{isVideo ? (item as CuratedVideo).channel : (item as Cocktail).style}</span>
-      <span>{isVideo ? (item as CuratedVideo).duration : ((item as Cocktail).alcoholFree ? 'NO ALCOHOL' : 'WITH ALCOHOL')}</span>
+      {isVideo ? <><span>{(item as CuratedVideo).channel}</span><span>{(item as CuratedVideo).duration}</span></> : <span>{(item as Cocktail).alcoholFree ? 'NO ALCOHOL' : 'WITH ALCOHOL'} / {(item as Cocktail).style}</span>}
     </div>
     <h2>{isVideo ? (item as CuratedVideo).title : (item as Cocktail).name}</h2>
     <p>{item.summary}</p>
@@ -30,9 +29,9 @@ const isVideo = type === 'video';
       <a class="content-card__link" href={(item as CuratedVideo).url} target="_blank" rel="noreferrer"><span>Open on YouTube</span><ExternalLink class="content-card__link-icon" size={16} stroke-width={1.7} aria-hidden="true" focusable="false" /></a>
     ) : (
       <div class="cocktail-details">
-        <button class="cocktail-select" type="button" data-cocktail-select aria-pressed="false"><span class="cocktail-select__mark" aria-hidden="true"></span><span data-cocktail-select-label>Add to ingredient list</span></button>
         <div><span>INGREDIENTS</span><p>{(item as Cocktail).ingredients.join(' · ')}</p></div>
         <div><span>METHOD</span><p>{(item as Cocktail).method}</p></div>
+        <button class="cocktail-select" type="button" data-cocktail-select aria-pressed="false"><span class="cocktail-select__mark" aria-hidden="true"></span><span data-cocktail-select-label>Add to ingredient list</span></button>
       </div>
     )}
   </div>
