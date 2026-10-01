@@ -363,6 +363,7 @@ html[data-theme="light"] .project-viz { background: #16221a; }
   .site-nav a { flex: 0 1 auto; min-height: 32px; padding: 11px 0 3px; }
   .favorite-button { min-height: 36px; padding: 3px 10px; }
   .favorite-button--compact { min-height: 30px; padding: 2px 7px; }
+  .project-grid .favorite-button--compact [data-favorite-label] { display: none; }
 }
 
 /* Detail title rhythm */
