@@ -309,7 +309,7 @@ html[data-theme="light"] .project-viz { background: #16221a; }
 .content-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); background: var(--paper-raised); transition: border-color .2s, transform .2s; }.content-card:not(.content-card--cocktail):hover { border-color: var(--line-strong); transform: translateY(-4px); }
 .content-card__visual { position: relative; height: 205px; overflow: hidden; }.content-card__visual .project-viz { position: relative; z-index: 0; height: 205px; margin: 0; border: 0; border-bottom: 1px solid var(--line); }
 .content-card__art, .content-card__art .project-viz { position: absolute; inset: 0; height: 100%; margin: 0; border: 0; }
-.content-card__art-image { display: block; width: 100%; height: 100%; border-bottom: 1px solid var(--line); object-fit: cover; }
+.content-card__art-image { display: block; width: 100%; height: 100%; border-bottom: 1px solid var(--line); background-color: #07110d; object-fit: contain; }
 .content-card__thumbnail { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
 .content-card__visual:has(.content-card__thumbnail)::after { content: ''; position: absolute; z-index: 2; inset: 0; background: linear-gradient(180deg, rgba(5, 9, 6, .58), transparent 35%, rgba(5, 9, 6, .08)); pointer-events: none; }
 .content-card__number, .content-card__type { position: absolute; z-index: 3; top: 14px; color: var(--ink-soft); font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-shadow: 0 1px 8px rgba(0, 0, 0, .55); }.content-card__number { left: 14px; color: var(--block-color); }.content-card__type { right: 14px; }
