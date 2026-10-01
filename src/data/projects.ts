@@ -6,6 +6,7 @@ export type BomItem = {
   name: string;
   cost: number;
   url: string;
+  availability?: string;
 };
 
 export type Project = {
@@ -22,6 +23,10 @@ export type Project = {
   total: number;
   votes: number;
   featuredRank?: number;
+  buildTime?: string;
+  protocol?: string;
+  buildSteps?: string[];
+  buildNotes?: string[];
 };
 
 function parseCsv(input: string): string[][] {
@@ -83,6 +88,7 @@ export const projects: Project[] = buildNames.map((name, index) => {
     name: row[3],
     cost: Number(row[4]),
     url: row[5],
+    availability: row[6] || undefined,
   }));
 
   return {

@@ -1,4 +1,4 @@
-Build #,Build,Item #,Item,Item cost EUR,Purchase URL
+Build #,Build,Item #,Item,Item cost EUR,Purchase URL,Availability at lookup
 21,LoRa Network,1,Elecrow ThinkNode M2 LoRa transceiver with ESP32-S3 and 1.3in OLED,24.90,https://www.berrybase.de/en/elecrow-thinknode-m2-lora-transceiver-meshtastic-esp32-s3-sx1262-oled-1-3-zoll-bt5-wifi-5v
 22,E-Paper Display,1,Elecrow CrowPanel 1.54in e-paper HMI display with ESP32-S3,16.90,https://www.berrybase.de/en/elecrow-crowpanel-e-paper-hmi-display-1.54-inch-152x152-resolution-esp32-s3-spi-black-and-white
 23,TFT Display,1,Adafruit ESP32-S3 Reverse TFT Feather,24.90,https://www.berrybase.de/en/adafruit-esp32-s3-reverse-tft-feather
@@ -89,3 +89,23 @@ Build #,Build,Item #,Item,Item cost EUR,Purchase URL
 19,LED Light-Painting Wand,4,Dupont kit,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/
 20,Thermal Hacker Receipt Printer,1,"10POS RP-12N 80mm thermal receipt printer (includes 24V PSU, USB cable, RS232 cable, starter paper roll)",85.90,https://youget.pt/en/thermal-receipt-printer-10pos-rp-12n-80mm-usbrs232ethernetrj11-black
 20,Thermal Hacker Receipt Printer,2,"123inkt 80x80x12mm thermal receipt paper, 5-roll pack (75m per roll)",9.95,https://www.123inkt.be/Papier-en-etiketten/Kassarollen/Thermorollen/Kassarollen-80x80x12-mm-p222334.html
+28,Cardboard Kinetic Automaton,1,Raspberry Pi Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi-pico-wh-rp2040-wlan-microcontroller-board-with-headers,In stock · checked 1 Oct 2026
+28,Cardboard Kinetic Automaton,2,SG92R micro servo,2.80,https://www.berrybase.de/en/sg92r-micro-servo,In stock · checked 1 Oct 2026
+28,Cardboard Kinetic Automaton,3,10k breadboard potentiometer,1.19,https://www.berrybase.de/en/breadboard-potentiometer-10k-ohm,In stock · checked 1 Oct 2026
+28,Cardboard Kinetic Automaton,4,400-point breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts,In stock · checked 1 Oct 2026
+28,Cardboard Kinetic Automaton,5,40-pin Dupont jumper-wire assortment,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/,In stock · checked 1 Oct 2026
+28,Cardboard Kinetic Automaton,6,MeanWell 5V / 4A power supply,12.90,https://www.berrybase.de/en/meanwell-schaltnetzteil-5v-dc-4-0a-mit-hohlstecker-5-5x2-1mm,In stock · checked 1 Oct 2026
+28,Cardboard Kinetic Automaton,7,5.5×2.1mm DC socket to screw terminal,0.50,https://www.berrybase.de/en/dc-kupplung-fuer-hohlstecker-5-5x2-1mm-schraubmontage-terminal-block-2-pin,In stock · checked 1 Oct 2026
+28,Cardboard Kinetic Automaton,8,Pre-cut cardboard and craft-stick linkage kit (workshop-prepared),0.00,,Workshop-prepared · no attendee cutting
+29,Mini Weighing Scale,1,Raspberry Pi Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi-pico-wh-rp2040-wlan-microcontroller-board-with-headers,In stock · checked 1 Oct 2026
+29,Mini Weighing Scale,2,"M5Stack Mini Scales Unit (5kg, I²C)",8.40,https://www.berrybase.de/en/m5stack-mini-scales-unit-stm32-hx711-adc-i2c-5kg-capacity-sk6812-led-arduino-python/,In stock · checked 1 Oct 2026
+29,Mini Weighing Scale,3,400-point breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts,In stock · checked 1 Oct 2026
+29,Mini Weighing Scale,4,40-pin Dupont jumper-wire assortment,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/,In stock · checked 1 Oct 2026
+29,Mini Weighing Scale,5,Raspberry Pi Micro USB cable,1.80,https://www.berrybase.de/en/offizielles-raspberry-pi-micro-usb-kabel-rot-1-0m,In stock · checked 1 Oct 2026
+29,Mini Weighing Scale,6,Workshop mounting platform and calibration mass,0.00,,Workshop stock required
+30,USB Macro Keyboard,1,Raspberry Pi Pico WH,7.20,https://www.berrybase.de/en/raspberry-pi-pico-wh-rp2040-wlan-microcontroller-board-with-headers,In stock · checked 1 Oct 2026
+30,USB Macro Keyboard,2,4x short-stroke tactile pushbutton,1.40,https://www.berrybase.de/en/short-stroke-pushbutton-pcb-mounting-vertical-mounting-12x12mm-h-7.30mm,In stock · checked 1 Oct 2026
+30,USB Macro Keyboard,3,4x round button cap,1.00,https://www.berrybase.de/en/push-button-cap-for-kht1212pv73-round-oe13mm,In stock · checked 1 Oct 2026
+30,USB Macro Keyboard,4,400-point breadboard,1.50,https://www.berrybase.de/en/breadboard-with-400-contacts,In stock · checked 1 Oct 2026
+30,USB Macro Keyboard,5,40-pin Dupont jumper-wire assortment,4.40,https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-each-f-f-m-m-f-m-10cm/,In stock · checked 1 Oct 2026
+30,USB Macro Keyboard,6,Raspberry Pi Micro USB cable,1.80,https://www.berrybase.de/en/offizielles-raspberry-pi-micro-usb-kabel-rot-1-0m,In stock · checked 1 Oct 2026

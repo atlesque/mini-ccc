@@ -436,3 +436,33 @@ html[data-theme="light"] .project-viz { background: #16221a; }
   .site-header__bar { row-gap: 8px; }
   .site-nav a { padding-inline: 5px; }
 }
+
+/* Detail-page additions for build instructions and inventory status. */
+.detail-intro--has-plan { margin-bottom: 54px; }
+.build-plan { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(45px, 8vw, 140px); align-items: start; margin-bottom: 76px; padding: 52px 0 58px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.build-plan__heading h2 { margin: 23px 0 32px; font-size: clamp(43px, 5vw, 70px); line-height: .9; letter-spacing: -.07em; text-transform: uppercase; }
+.build-plan__heading h2 em { color: var(--acid); font-style: normal; }
+.build-plan__facts { display: grid; margin: 0; border-top: 1px solid var(--line); }
+.build-plan__facts div { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.build-plan__facts dt { color: var(--ink-soft); font-family: var(--mono); font-size: 8px; letter-spacing: .08em; }
+.build-plan__facts dd { margin: 0; font-size: 11px; text-align: right; }
+.build-plan__body ol { display: grid; margin: 0; padding: 0; list-style: none; counter-reset: build-step; }
+.build-plan__body ol li { position: relative; min-height: 58px; padding: 16px 0 16px 45px; border-top: 1px solid var(--line); counter-increment: build-step; font-size: 13px; line-height: 1.5; }
+.build-plan__body ol li::before { position: absolute; top: 17px; left: 0; color: var(--acid); font-family: var(--mono); font-size: 10px; content: counter(build-step, decimal-leading-zero); }
+.build-plan__notes { display: grid; gap: 9px; margin: 20px 0 0; padding: 15px 18px; border-left: 2px solid var(--blue); background: var(--paper-raised); color: var(--ink-soft); font-size: 10px; line-height: 1.6; list-style: none; }
+.bom-stock-note { max-width: 280px; margin-top: 22px; color: var(--ink-soft); font-size: 10px; line-height: 1.7; }
+.bom-row__item { display: grid !important; grid-template-columns: 22px minmax(0, 1fr); align-items: start !important; gap: 0 12px !important; padding: 9px 0; }
+.bom-row__copy { display: grid; gap: 4px; min-width: 0; }
+.bom-item-name { font-size: 11px; line-height: 1.35; }
+.bom-availability { color: var(--ink-soft); font-family: var(--mono); font-size: 8px; line-height: 1.35; }
+.bom-row__item .bom-index { grid-row: span 2; }
+.bom-no-link { color: var(--ink-soft); font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+
+@media (max-width: 760px) {
+  .detail-intro--has-plan { margin-bottom: 38px; }
+  .build-plan { grid-template-columns: 1fr; gap: 28px; margin-bottom: 50px; padding: 38px 0 42px; }
+  .build-plan__heading h2 { margin-top: 18px; margin-bottom: 24px; font-size: 56px; }
+  .build-plan__body ol li { font-size: 12px; }
+  .bom-stock-note { margin-top: 14px; }
+  .bom-row__item { gap: 0 8px !important; }
+}

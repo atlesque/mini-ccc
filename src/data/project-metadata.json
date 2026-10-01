@@ -25,5 +25,74 @@
   "60-Pixel Clock Halo": { "tag": "GLOW / TIME", "kind": "glow", "summary": "An LED ring that turns time into a soft orbit.", "description": "A 60-pixel LED ring displays the time as a soft orbit of light.", "accent": "blue", "visual": "clock", "votes": 9 },
   "Electronic Compass Halo": { "tag": "SENSOR / ORIENTATION", "kind": "sensor", "summary": "A compass sensor gives the halo a sense of north.", "description": "A compass sensor controls a glowing halo that points north as the device rotates.", "accent": "orange", "visual": "compass", "votes": 5 },
   "LED Light-Painting Wand": { "tag": "GLOW / CAMERA", "kind": "glow", "summary": "Leave traces in the dark with a portable pixel wand.", "description": "A portable strip of LEDs creates long-exposure light trails when moved through the dark.", "accent": "pink", "visual": "wand", "votes": 8 },
-  "Thermal Hacker Receipt Printer": { "tag": "OUTPUT / PAPER", "kind": "interface", "summary": "Print the things the group does, decides, or remembers.", "description": "A thermal printer turns votes, notes, and small decisions into physical receipts.", "accent": "orange", "visual": "printer", "votes": 11 }
+  "Thermal Hacker Receipt Printer": { "tag": "OUTPUT / PAPER", "kind": "interface", "summary": "Print the things the group does, decides, or remembers.", "description": "A thermal printer turns votes, notes, and small decisions into physical receipts.", "accent": "orange", "visual": "printer", "votes": 11 },
+  "Cardboard Kinetic Automaton": {
+    "tag": "MOTION / MECHANISM",
+    "kind": "play",
+    "summary": "A little cardboard creature comes alive with a servo-driven linkage.",
+    "description": "A pre-cut card and craft-stick cam mechanism brings a small automaton to life. An SG92R servo turns a linkage, while a 10k potentiometer gives builders direct control over its motion.",
+    "accent": "orange",
+    "visual": "automaton",
+    "votes": 0,
+    "featuredRank": 8,
+    "buildTime": "3–4 hours",
+    "protocol": "Servo PWM + analogue input",
+    "buildSteps": [
+      "Assemble the pre-cut corrugated-card and craft-stick cam linkage on its base.",
+      "Fit the SG92R horn to the crank and check that the linkage moves freely before attaching it to the automaton.",
+      "Place the Pico and 10k potentiometer on a breadboard; read the knob position with an ADC pin.",
+      "Power the servo from the separate 5V supply and connect its ground to Pico ground.",
+      "Map the knob reading to a safe servo angle, then tune the motion so the linkage never jams."
+    ],
+    "buildNotes": [
+      "The card pieces must be pre-cut before the session; attendees only assemble the mechanism.",
+      "Do not power the servo from the Pico 3.3V rail. The servo supply and Pico must share ground."
+    ]
+  },
+  "Mini Weighing Scale": {
+    "tag": "SENSOR / MEASURE",
+    "kind": "sensor",
+    "summary": "Build and calibrate a compact scale with a 5 kg capacity.",
+    "description": "A Raspberry Pi Pico reads an M5Stack mini scale module over I²C and streams measurements over USB serial. Builders mount the weighing platform, tare the empty scale, and calibrate it with a known mass.",
+    "accent": "blue",
+    "visual": "scale",
+    "votes": 0,
+    "featuredRank": 9,
+    "buildTime": "2.5–4 hours",
+    "protocol": "I²C + USB serial",
+    "buildSteps": [
+      "Mount the scale module beneath a small flat platform using its M3 mounting points and nuts.",
+      "Connect its supplied four-pin cable to Pico 3.3V, ground, SDA, and SCL using the jumper leads.",
+      "Read the module over I²C and send the weight readings to a computer over USB serial.",
+      "Tare the empty platform, then calibrate the reading against a known mass.",
+      "Repeat the same measurement to compare stability; keep the total load below 5 kg."
+    ],
+    "buildNotes": [
+      "The platform and a known calibration mass are workshop materials; the scale module includes its cable and M3 nuts.",
+      "Load the sensing platform vertically and avoid side force or overloading the 5 kg module."
+    ]
+  },
+  "USB Macro Keyboard": {
+    "tag": "INPUT / USB HID",
+    "kind": "play",
+    "summary": "Four tactile keys send programmable shortcuts straight to a computer.",
+    "description": "Four tactile pushbuttons turn a Raspberry Pi Pico into a tiny USB macro keyboard. Assign shortcuts for window switching, text snippets, or other repetitive actions, then plug it into a computer as a standard keyboard.",
+    "accent": "lime",
+    "visual": "keyboard",
+    "votes": 0,
+    "featuredRank": 10,
+    "buildTime": "2–3 hours",
+    "protocol": "USB HID keyboard",
+    "buildSteps": [
+      "Place the Pico and four pushbuttons across the centre gap of a solderless breadboard.",
+      "Connect one side of each button to ground and the other side to a Pico GPIO pin.",
+      "Load CircuitPython with USB HID keyboard support and confirm the Pico appears as a keyboard.",
+      "Map each button to a shortcut or short text macro and add a simple debounce delay.",
+      "Plug the pad into a computer and try the four shortcuts in a text editor or browser."
+    ],
+    "buildNotes": [
+      "This uses four breadboard-friendly tactile switches with small caps; no case or cutting is required.",
+      "The Pico sends normal USB keyboard reports, so no musical equipment or MIDI setup is needed."
+    ]
+  }
 }

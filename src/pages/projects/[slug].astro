@@ -28,21 +28,48 @@ if (!project) return Astro.redirect('/');
     </Header>
     <main class="detail-page">
       <section class="detail-content section-pad">
-        <div class="detail-intro">
+        <div class:list={['detail-intro', project.buildSteps?.length && 'detail-intro--has-plan']}>
           <p class="detail-description">{project.description}</p>
         </div>
+
+        {project.buildSteps?.length && (
+          <div class="build-plan" aria-labelledby="build-plan-title">
+            <div class="build-plan__heading">
+              <p class="project-tag">BUILD PLAN</p>
+              <h2 id="build-plan-title">Make it<br /><em>your own.</em></h2>
+              <dl class="build-plan__facts">
+                <div><dt>BUILD TIME</dt><dd>{project.buildTime}</dd></div>
+                <div><dt>MAIN INTERFACE</dt><dd>{project.protocol}</dd></div>
+              </dl>
+            </div>
+            <div class="build-plan__body">
+              <ol>{project.buildSteps.map((step) => <li>{step}</li>)}</ol>
+              {project.buildNotes?.length && <ul class="build-plan__notes">{project.buildNotes.map((note) => <li>{note}</li>)}</ul>}
+            </div>
+          </div>
+        )}
 
         <div class="bom-layout">
           <div class="bom-heading">
             <h2>Parts list</h2>
+            {project.number >= 28 && <p class="bom-stock-note">BerryBase parts were listed in stock on 1 Oct 2026. Stock and prices can change; workshop materials are listed separately.</p>}
           </div>
           <div class="bom-card">
             <div class="bom-card__header"><span>ITEM</span><span>COST</span></div>
             <div class="bom-rows">
               {project.items.map((item) => (
                 <div class="bom-row">
-                  <div><span class="bom-index">{String(item.number).padStart(2, '0')}</span><span>{item.name}</span></div>
-                  <div><strong>€{item.cost.toFixed(2)}</strong><a href={item.url} target="_blank" rel="noreferrer" aria-label={`Buy ${item.name}`}><ExternalLink size={14} stroke-width={1.7} aria-hidden="true" focusable="false" /></a></div>
+                  <div class="bom-row__item">
+                    <span class="bom-index">{String(item.number).padStart(2, '0')}</span>
+                    <div class="bom-row__copy">
+                      <span class="bom-item-name">{item.name}</span>
+                      {item.availability && <small class="bom-availability">{item.availability}</small>}
+                    </div>
+                  </div>
+                  <div>
+                    <strong>€{item.cost.toFixed(2)}</strong>
+                    {item.url ? <a href={item.url} target="_blank" rel="noreferrer" aria-label={`Buy ${item.name}`}><ExternalLink size={14} stroke-width={1.7} aria-hidden="true" focusable="false" /></a> : <span class="bom-no-link">workshop</span>}
+                  </div>
                 </div>
               ))}
             </div>
