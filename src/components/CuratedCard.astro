@@ -1,5 +1,6 @@
 ---
 import ProjectViz from './ProjectViz.astro';
+import CocktailArt from './CocktailArt.astro';
 import type { Cocktail, CuratedVideo } from '../data/content';
 import { ExternalLink } from '@lucide/astro';
 
@@ -14,9 +15,9 @@ const isVideo = type === 'video';
 <article class:list={['content-card', `content-card--${type}`]}>
   <div class="content-card__visual">
     {isVideo && <img class="content-card__thumbnail" src={(item as CuratedVideo).thumbnail} alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />}
-    <ProjectViz visual={item.visual} accent={item.accent} />
+    {isVideo ? <ProjectViz visual={item.visual} accent={item.accent} /> : <CocktailArt cocktail={item as Cocktail} />}
     <span class="content-card__number">{String(item.number).padStart(2, '0')}</span>
-    <span class="content-card__type">{isVideo ? 'WATCH LIST' : 'POUR LIST'}</span>
+    {isVideo && <span class="content-card__type">WATCH LIST</span>}
   </div>
   <div class="content-card__copy">
     <div class="content-card__meta">

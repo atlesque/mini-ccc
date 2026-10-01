@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "generate:build-images": "node scripts/generate-build-images.mjs"
+    "generate:build-images": "node scripts/generate-build-images.mjs",
+    "generate:cocktail-images": "node scripts/generate-cocktail-images.mjs"
   },
   "dependencies": {
     "@lucide/astro": "^1.48.0",
