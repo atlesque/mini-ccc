@@ -425,6 +425,21 @@ function initCocktailIngredients() {
   render();
 }
 
+function applyCocktailFilter(filter: string) {
+  document.querySelectorAll<HTMLElement>('[data-cocktail-card]').forEach((card) => {
+    const alcoholFree = card.dataset.alcoholFree === 'true';
+    card.hidden = filter === 'with-alcohol'
+      ? alcoholFree
+      : filter === 'without-alcohol' && !alcoholFree;
+  });
+}
+
+function initCocktailFilters() {
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-cocktail-filter]')];
+  if (buttons.length === 0) return;
+  applyCocktailFilter(buttons.find((button) => button.classList.contains('is-active'))?.dataset.cocktailFilter ?? 'all');
+}
+
 document.addEventListener('click', (event) => {
   const target = event.target instanceof Element ? event.target : null;
   const favoriteButton = target?.closest<HTMLButtonElement>('[data-favorite-button]');
@@ -461,6 +476,17 @@ document.addEventListener('click', (event) => {
     filterButton.classList.add('is-active');
     applyFilters();
   }
+
+  const cocktailFilter = target?.closest<HTMLButtonElement>('[data-cocktail-filter]');
+  if (cocktailFilter) {
+    const filterGroup = cocktailFilter.closest('[role="group"]');
+    filterGroup?.querySelectorAll<HTMLButtonElement>('[data-cocktail-filter]').forEach((button) => {
+      const active = button === cocktailFilter;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    applyCocktailFilter(cocktailFilter.dataset.cocktailFilter ?? 'all');
+  }
 });
 
 document.querySelector<HTMLInputElement>('[data-project-search]')?.addEventListener('input', applyFilters);
@@ -476,3 +502,4 @@ applyFilters();
 initSchedule();
 initBuildArtLoaders();
 initCocktailIngredients();
+initCocktailFilters();

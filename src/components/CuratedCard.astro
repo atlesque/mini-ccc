@@ -12,7 +12,7 @@ type Props = {
 const { item, type } = Astro.props;
 const isVideo = type === 'video';
 ---
-<article class:list={['content-card', `content-card--${type}`]} data-cocktail-card={type === 'cocktail' ? '' : undefined} data-ingredients={type === 'cocktail' ? JSON.stringify((item as Cocktail).ingredients) : undefined}>
+<article class:list={['content-card', `content-card--${type}`]} data-cocktail-card={type === 'cocktail' ? '' : undefined} data-alcohol-free={type === 'cocktail' ? String((item as Cocktail).alcoholFree) : undefined} data-ingredients={type === 'cocktail' ? JSON.stringify((item as Cocktail).ingredients) : undefined}>
   <div class="content-card__visual">
     {isVideo && <img class="content-card__thumbnail" src={(item as CuratedVideo).thumbnail} alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />}
     {isVideo ? <ProjectViz visual={item.visual} accent={item.accent} /> : <CocktailArt cocktail={item as Cocktail} />}
