@@ -174,8 +174,6 @@ function renderSchedule() {
   document.querySelectorAll<HTMLElement>('[data-palette-block]').forEach((element) => {
     element.hidden = usedIds.has(element.dataset.blockId ?? '');
   });
-  const lunch = grid.querySelector<HTMLElement>('.schedule-lunch');
-  if (lunch) lunch.hidden = blocks.some((block) => block.start < 6 && block.start + block.duration > 4);
   const hint = grid.querySelector<HTMLElement>('[data-schedule-drop-hint]');
   if (hint) hint.hidden = blocks.length > 0;
 }
@@ -201,8 +199,7 @@ function exportSchedule() {
   let cursor = 0;
   blocks.forEach((block) => {
     if (block.start > cursor) {
-      const gapLabel = cursor === 4 && block.start >= 6 ? 'Lunch / open time' : 'Open time';
-      lines.push(`${formatScheduleTime(cursor)}—${formatScheduleTime(block.start)}  ${gapLabel}`);
+      lines.push(`${formatScheduleTime(cursor)}—${formatScheduleTime(block.start)}  Open time`);
     }
     lines.push(`${formatScheduleTime(block.start)}—${formatScheduleTime(block.start + block.duration)}  ${labels.get(block.id) ?? 'Activity'}`);
     cursor = block.start + block.duration;

@@ -280,8 +280,7 @@ html[data-theme="light"] .project-viz { background: #16221a; }
 .schedule-times span { align-self: start; padding-top: 8px; color: var(--ink-soft); font-family: var(--mono); font-size: 9px; line-height: 1; }
 .schedule-grid { position: relative; display: grid; grid-template-rows: repeat(var(--slot-count), minmax(0, 1fr)); overflow: hidden; background-color: var(--paper); background-image: linear-gradient(to bottom, var(--line) 1px, transparent 1px); background-size: 100% calc(100% / var(--slot-count)); transition: background-color .2s; }
 .schedule-grid.is-drag-over { background-color: color-mix(in srgb, var(--acid), var(--paper) 92%); }
-.schedule-lunch { z-index: 1; grid-row: calc(var(--start) + 1) / span var(--span); display: flex; align-items: center; padding: 0 17px; border-top: 1px dashed var(--line-strong); border-bottom: 1px dashed var(--line-strong); color: var(--ink-soft); font-family: var(--mono); font-size: 8px; letter-spacing: .1em; }
-.schedule-lunch[hidden], .schedule-block[hidden], .palette-block[hidden], .schedule-drop-hint[hidden] { display: none; }
+.schedule-block[hidden], .palette-block[hidden], .schedule-drop-hint[hidden] { display: none; }
 .schedule-block { position: relative; z-index: 3; grid-row: calc(var(--start) + 1) / span var(--span); display: flex; min-height: 0; margin: 3px 5px; border: 1px solid var(--block-color); background: color-mix(in srgb, var(--block-color), var(--paper-raised) 84%); color: var(--ink); box-shadow: 5px 5px 0 color-mix(in srgb, var(--block-color), transparent 75%); cursor: grab; transition: box-shadow .2s, opacity .2s; }
 .schedule-block:hover { box-shadow: 8px 8px 0 color-mix(in srgb, var(--block-color), transparent 72%); }
 .schedule-block.is-dragging { opacity: .42; }

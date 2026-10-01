@@ -9,15 +9,17 @@ const palette = [
   { id: 'lockpicking', label: 'Lock picking', short: 'LOCK PICKING', accent: 'pink' },
   { id: 'diy-one', label: 'DIY project 1', short: 'DIY 01', accent: 'lime' },
   { id: 'diy-two', label: 'DIY project 2', short: 'DIY 02', accent: 'lime' },
+  { id: 'lunch', label: 'Lunch', short: 'LUNCH', accent: 'orange' },
   { id: 'dinner', label: 'Dinner', short: 'DINNER', accent: 'orange' },
 ];
 
 const defaultBlocks = [
   { ...palette[0], start: 0, duration: 2 },
   { ...palette[1], start: 2, duration: 2 },
+  { ...palette[5], start: 4, duration: 2 },
   { ...palette[3], start: 6, duration: 8 },
   { ...palette[2], start: 14, duration: 2 },
-  { ...palette[5], start: 16, duration: 2 },
+  { ...palette[6], start: 16, duration: 2 },
   { ...palette[4], start: 18, duration: 6 },
 ];
 
@@ -44,11 +46,10 @@ const times = Array.from({ length: 25 }, (_, index) => {
             <div class="schedule-palette__foot"><span>10:00—22:00 / LOCAL AGENDA</span><span>MAX 04:00</span></div>
           </aside>
           <section class="schedule-editor" aria-label="Editable schedule">
-            <div class="schedule-editor__topline"><div><span class="schedule-status-dot"></span><span data-schedule-status>DEFAULT AGENDA</span></div><span>6 BLOCKS / 24 SLOTS</span></div>
+            <div class="schedule-editor__topline"><div><span class="schedule-status-dot"></span><span data-schedule-status>DEFAULT AGENDA</span></div><span>{defaultBlocks.length} BLOCKS / 24 SLOTS</span></div>
             <div class="schedule-calendar">
               <div class="schedule-times" aria-hidden="true">{times.slice(0, -1).map((time, index) => <span style={`--time-row: ${index + 1}`}>{time}</span>)}</div>
               <div class="schedule-grid" data-schedule-grid data-slot-count="24" style="--slot-count: 24">
-                <div class="schedule-lunch" style="--start: 4; --span: 2"><span>LUNCH / OPEN TIME</span></div>
                 {defaultBlocks.map((block) => <div class:list={['schedule-block', `accent-${block.accent}`]} draggable="true" data-schedule-block data-block-id={block.id} data-label={block.label} data-start={block.start} data-duration={block.duration} style={`--start: ${block.start}; --span: ${block.duration}`}>
                   <span class="schedule-block__handle schedule-block__handle--top" data-resize="top" aria-hidden="true"></span>
                   <div class="schedule-block__body"><span class="schedule-block__time">{times[block.start]}—{times[block.start + block.duration]}</span><strong>{block.label}</strong></div>
