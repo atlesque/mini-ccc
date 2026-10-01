@@ -12,7 +12,7 @@ type Props = {
 const { item, type } = Astro.props;
 const isVideo = type === 'video';
 ---
-<article class:list={['content-card', `content-card--${type}`]}>
+<article class:list={['content-card', `content-card--${type}`]} data-cocktail-card={type === 'cocktail' ? '' : undefined} data-ingredients={type === 'cocktail' ? JSON.stringify((item as Cocktail).ingredients) : undefined}>
   <div class="content-card__visual">
     {isVideo && <img class="content-card__thumbnail" src={(item as CuratedVideo).thumbnail} alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />}
     {isVideo ? <ProjectViz visual={item.visual} accent={item.accent} /> : <CocktailArt cocktail={item as Cocktail} />}
@@ -30,6 +30,7 @@ const isVideo = type === 'video';
       <a class="content-card__link" href={(item as CuratedVideo).url} target="_blank" rel="noreferrer"><span>Open on YouTube</span><ExternalLink class="content-card__link-icon" size={16} stroke-width={1.7} aria-hidden="true" focusable="false" /></a>
     ) : (
       <div class="cocktail-details">
+        <button class="cocktail-select" type="button" data-cocktail-select aria-pressed="false"><span class="cocktail-select__mark" aria-hidden="true"></span><span data-cocktail-select-label>Add to ingredient list</span></button>
         <div><span>INGREDIENTS</span><p>{(item as Cocktail).ingredients.join(' · ')}</p></div>
         <div><span>METHOD</span><p>{(item as Cocktail).method}</p></div>
       </div>

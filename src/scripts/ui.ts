@@ -351,6 +351,80 @@ function setThemePreference(preference: ThemePreference, persist = true) {
   });
 }
 
+function initCocktailIngredients() {
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-cocktail-card]')];
+  const summary = document.querySelector<HTMLElement>('[data-ingredient-summary]');
+  const content = summary?.querySelector<HTMLElement>('[data-ingredient-summary-content]');
+  const countLabel = summary?.querySelector<HTMLElement>('[data-ingredient-summary-count]');
+  if (!summary || !content || !countLabel || cards.length === 0) return;
+
+  const render = () => {
+    const selected = cards.filter((card) => card.dataset.selected === 'true');
+    cards.forEach((card) => {
+      const button = card.querySelector<HTMLButtonElement>('[data-cocktail-select]');
+      const isSelected = card.dataset.selected === 'true';
+      card.classList.toggle('is-selected', isSelected);
+      button?.setAttribute('aria-pressed', String(isSelected));
+      const label = button?.querySelector<HTMLElement>('[data-cocktail-select-label]');
+      if (label) label.textContent = isSelected ? 'Added to ingredient list' : 'Add to ingredient list';
+    });
+
+    countLabel.textContent = selected.length === 0
+      ? 'No cocktails selected yet.'
+      : `${selected.length} ${selected.length === 1 ? 'cocktail' : 'cocktails'} selected.`;
+    const selectAll = summary.querySelector<HTMLButtonElement>('[data-select-all]');
+    const deselectAll = summary.querySelector<HTMLButtonElement>('[data-deselect-all]');
+    if (selectAll) selectAll.disabled = selected.length === cards.length;
+    if (deselectAll) deselectAll.disabled = selected.length === 0;
+
+    content.replaceChildren();
+    if (selected.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'ingredient-summary__empty';
+      empty.textContent = 'Choose cocktails above to build your ingredient list.';
+      content.append(empty);
+      return;
+    }
+
+    const ingredients = new Map<string, number>();
+    selected.forEach((card) => {
+      let recipeIngredients: string[] = [];
+      try { recipeIngredients = JSON.parse(card.dataset.ingredients ?? '[]') as string[]; } catch {}
+      recipeIngredients.forEach((ingredient) => ingredients.set(ingredient, (ingredients.get(ingredient) ?? 0) + 1));
+    });
+    const list = document.createElement('ul');
+    list.className = 'ingredient-summary__list';
+    [...ingredients.entries()].sort(([a], [b]) => a.localeCompare(b)).forEach(([ingredient, recipeCount]) => {
+      const item = document.createElement('li');
+      const name = document.createElement('span');
+      name.className = 'ingredient-summary__name';
+      name.textContent = ingredient;
+      const usage = document.createElement('span');
+      usage.className = 'ingredient-summary__usage';
+      usage.textContent = `in ${recipeCount} ${recipeCount === 1 ? 'recipe' : 'recipes'}`;
+      item.append(name, usage);
+      list.append(item);
+    });
+    content.append(list);
+  };
+
+  summary.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (target?.closest('[data-select-all]')) {
+      cards.forEach((card) => { card.dataset.selected = 'true'; });
+      render();
+    } else if (target?.closest('[data-deselect-all]')) {
+      cards.forEach((card) => { card.dataset.selected = 'false'; });
+      render();
+    }
+  });
+  cards.forEach((card) => card.querySelector('[data-cocktail-select]')?.addEventListener('click', () => {
+    card.dataset.selected = card.dataset.selected === 'true' ? 'false' : 'true';
+    render();
+  }));
+  render();
+}
+
 document.addEventListener('click', (event) => {
   const target = event.target instanceof Element ? event.target : null;
   const favoriteButton = target?.closest<HTMLButtonElement>('[data-favorite-button]');
@@ -401,3 +475,4 @@ updateFavoriteUi();
 applyFilters();
 initSchedule();
 initBuildArtLoaders();
+initCocktailIngredients();
