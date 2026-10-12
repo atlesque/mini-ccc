@@ -5,9 +5,9 @@ import { fileURLToPath } from 'node:url';
 import { BUILD_IMAGE_SIZE, createBuildImagePrompt } from './build-image-prompt.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
-const outputDirectory = path.join(projectRoot, 'src/assets/builds');
-const metadataPath = path.join(projectRoot, 'src/data/project-metadata.json');
-const bomPath = path.join(projectRoot, 'src/data/bom.csv');
+const outputDirectory = path.join(projectRoot, 'public/art/builds');
+const metadataPath = path.join(projectRoot, 'app/data/project-metadata.json');
+const bomPath = path.join(projectRoot, 'app/data/bom.csv');
 const [width, height] = BUILD_IMAGE_SIZE.split('x').map(Number);
 
 for (const envPath of ['.env.local', '.env']) {
@@ -256,5 +256,5 @@ if (failures.length > 0) {
   console.error(`\n${failures.length} of ${jobs.length} image jobs failed.`);
   process.exitCode = 1;
 } else {
-  console.log(`\nAll ${jobs.length} build images are ready in src/assets/builds/.`);
+  console.log(`\nAll ${jobs.length} build images are ready in public/art/builds/.`);
 }

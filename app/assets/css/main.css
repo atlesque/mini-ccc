@@ -1,0 +1,339 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
+@import "./viz.css";
+
+@theme {
+  --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", monospace;
+
+  --color-acid: var(--acid);
+  --color-signal-blue: var(--signal-blue);
+  --color-signal-orange: var(--signal-orange);
+  --color-signal-pink: var(--signal-pink);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-panel: var(--panel);
+  --color-panel-raised: var(--panel-raised);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-pulse-dot: pulse-dot 2.4s ease-in-out infinite;
+  --animate-sweep: sweep 6s linear infinite;
+  --animate-flicker: flicker 7s steps(1) infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --acid: #557500;
+  --signal-blue: #2448b8;
+  --signal-orange: #b2471f;
+  --signal-pink: #a3246c;
+  --ink: #141a16;
+  --ink-soft: #4a564d;
+  --panel: #f3f2ea;
+  --panel-raised: #fffdf6;
+  --hairline: rgb(20 26 22 / 0.14);
+  --hairline-strong: rgb(20 26 22 / 0.32);
+  --grid-line: rgb(20 26 22 / 0.055);
+  --glow-strength: 0.18;
+
+  --ui-bg: var(--panel);
+  --ui-bg-muted: #ebe9df;
+  --ui-bg-elevated: var(--panel-raised);
+  --ui-bg-accented: #e2e0d4;
+  --ui-text: var(--ink);
+  --ui-text-muted: var(--ink-soft);
+  --ui-border: var(--hairline);
+  --ui-border-accented: var(--hairline-strong);
+  --ui-primary: var(--acid);
+  --ui-radius: 0.375rem;
+}
+
+.dark {
+  --acid: #c6ff4d;
+  --signal-blue: #7b96ff;
+  --signal-orange: #ff9a72;
+  --signal-pink: #ff82c6;
+  --ink: #eef2e8;
+  --ink-soft: #a3ada2;
+  --panel: #080b09;
+  --panel-raised: #10150f;
+  --hairline: rgb(238 242 232 / 0.11);
+  --hairline-strong: rgb(238 242 232 / 0.26);
+  --grid-line: rgb(198 255 77 / 0.045);
+  --glow-strength: 0.45;
+
+  --ui-bg: var(--panel);
+  --ui-bg-muted: #0e130f;
+  --ui-bg-elevated: var(--panel-raised);
+  --ui-bg-accented: #182019;
+  --ui-text: var(--ink);
+  --ui-text-muted: var(--ink-soft);
+  --ui-border: var(--hairline);
+  --ui-border-accented: var(--hairline-strong);
+  --ui-primary: var(--acid);
+}
+
+.accent-lime { --accent: var(--acid); }
+.accent-blue { --accent: var(--signal-blue); }
+.accent-orange { --accent: var(--signal-orange); }
+.accent-pink { --accent: var(--signal-pink); }
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+html {
+  background: var(--panel);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--panel);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--acid);
+  color: #0a0d0b;
+}
+
+/* Layered backdrop: a faint blueprint grid, two coloured glows, film
+   grain, and (in dark mode) soft CRT scanlines. All of it is CSS, so it
+   costs no requests. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, color-mix(in oklab, var(--signal-blue) calc(var(--glow-strength) * 40%), transparent), transparent 70%),
+    radial-gradient(50rem 36rem at -10% 20%, color-mix(in oklab, var(--acid) calc(var(--glow-strength) * 30%), transparent), transparent 70%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--panel);
+  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+.dark .grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.35) 2px 3px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable details                                                    */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.75rem);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--accent, var(--acid));
+    box-shadow: 0 0 10px var(--accent, var(--acid));
+  }
+
+  .eyebrow--plain::before { display: none; }
+
+  .display-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+  }
+
+  .glow-text {
+    color: var(--accent, var(--acid));
+    text-shadow: 0 0 calc(28px * var(--glow-strength)) color-mix(in oklab, var(--accent, var(--acid)) 70%, transparent);
+  }
+
+  /* HUD panel: hairline border with bright corner brackets. */
+  .hud {
+    position: relative;
+    border: 1px solid var(--hairline);
+    background: color-mix(in oklab, var(--panel-raised) 82%, transparent);
+    backdrop-filter: blur(6px);
+  }
+
+  .hud::before,
+  .hud::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    border-color: var(--accent, var(--acid));
+    border-style: solid;
+    transition: width 0.25s ease, height 0.25s ease;
+  }
+
+  .hud::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+  .hud::after { right: -1px; bottom: -1px; border-width: 0 1px 1px 0; }
+
+  .hud-interactive {
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .hud-interactive:hover,
+  .hud-interactive:focus-within {
+    border-color: color-mix(in oklab, var(--accent, var(--acid)) 55%, var(--hairline));
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent, var(--acid)) 18%, transparent), 0 18px 50px -28px color-mix(in oklab, var(--accent, var(--acid)) 80%, transparent);
+  }
+
+  .hud-interactive:hover::before,
+  .hud-interactive:hover::after,
+  .hud-interactive:focus-within::before,
+  .hud-interactive:focus-within::after {
+    width: 28px;
+    height: 28px;
+  }
+
+  .status-dot {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--accent, var(--acid));
+    box-shadow: 0 0 10px var(--accent, var(--acid));
+  }
+
+  .status-dot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    border: 1px solid var(--accent, var(--acid));
+    animation: var(--animate-pulse-dot);
+  }
+
+  .tick-rule {
+    height: 10px;
+    background:
+      linear-gradient(90deg, var(--hairline-strong) 1px, transparent 1px) 0 100% / 8px 4px repeat-x,
+      linear-gradient(90deg, var(--hairline-strong) 1px, transparent 1px) 0 100% / 64px 10px repeat-x;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: var(--animate-marquee);
+  }
+
+  .scan-sweep {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .scan-sweep::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 30%;
+    top: -30%;
+    background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--accent, var(--acid)) 14%, transparent), transparent);
+    animation: var(--animate-sweep);
+  }
+
+  .image-frame {
+    position: relative;
+    overflow: hidden;
+    background: #0b0f0c;
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(.2, .7, .2, 1), filter 0.4s ease;
+  }
+
+  .group:hover .image-frame img { transform: scale(1.04); }
+
+  .image-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to top, rgb(5 8 6 / 0.55), transparent 45%);
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(0.6); opacity: 0.9; }
+  70% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes sweep {
+  from { top: -30%; }
+  to { top: 130%; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  41% { opacity: 1; }
+  42% { opacity: 0.55; }
+  43% { opacity: 1; }
+  78% { opacity: 1; }
+  79% { opacity: 0.7; }
+  80% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
