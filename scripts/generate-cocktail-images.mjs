@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { COCKTAIL_IMAGE_SIZE, createCocktailImagePrompt } from './cocktail-image-prompt.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
-const outputDirectory = path.join(projectRoot, 'src/assets/cocktails');
-const contentPath = path.join(projectRoot, 'src/data/content.ts');
+const outputDirectory = path.join(projectRoot, 'public/art/cocktails');
+const contentPath = path.join(projectRoot, 'app/data/content.ts');
 const [width, height] = COCKTAIL_IMAGE_SIZE.split('x').map(Number);
 
 for (const envPath of ['.env.local', '.env']) {
@@ -26,10 +26,10 @@ function slugify(value) {
 
 function parseCocktails(source) {
   const match = source.match(/export const cocktails: Cocktail\[\] = (\[[\s\S]*?\n\]);/);
-  if (!match) throw new Error('Could not locate the cocktails list in src/data/content.ts');
+  if (!match) throw new Error('Could not locate the cocktails list in app/data/content.ts');
 
   const entries = [...match[1].matchAll(/\{\s*number:\s*(\d+),\s*name:\s*'([^']+)',\s*style:\s*'[^']*',\s*summary:\s*'([^']*)',\s*ingredients:\s*\[([^\]]*)\],\s*method:\s*'[^']*',\s*visual:\s*'[^']*',\s*accent:\s*'([^']+)'/g)];
-  if (entries.length === 0) throw new Error('No cocktail entries could be read from src/data/content.ts');
+  if (entries.length === 0) throw new Error('No cocktail entries could be read from app/data/content.ts');
 
   return entries.map(([, number, name, summary, rawIngredients, accent]) => ({
     number: Number(number),
@@ -173,5 +173,5 @@ if (failures.length > 0) {
   console.error(`\n${failures.length} of ${jobs.length} image jobs failed.`);
   process.exitCode = 1;
 } else {
-  console.log(`\nAll ${jobs.length} cocktail images are ready in src/assets/cocktails/.`);
+  console.log(`\nAll ${jobs.length} cocktail images are ready in public/art/cocktails/.`);
 }

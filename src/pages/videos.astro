@@ -1,9 +1,0 @@
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import CuratedCard from '../components/CuratedCard.astro';
-import { videos } from '../data/content';
----
-<BaseLayout title="Videos" description="A shared YouTube watch list for Mini CCC.">
-  <div class="page-shell"><Header title="Queue up" titleAccent="the good stuff." /><main><section class="content-section section-pad"><div class="content-grid">{videos.map((item) => <CuratedCard item={item} type="video" />)}</div></section></main></div>
-</BaseLayout>

@@ -1,6 +1,10 @@
 node_modules/
-dist/
-.astro/
+dist
+.output/
+.nuxt/
+.nitro/
+.cache/
+.data/
 .pnpm-store/
 public/generated/*.json
 .env

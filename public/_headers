@@ -1,0 +1,11 @@
+# Cloudflare Pages response headers. Hashed build output never changes, so
+# browsers can keep it for a year; HTML stays revalidated on every visit.
+/_nuxt/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_ipx/*
+  Cache-Control: public, max-age=2592000
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
