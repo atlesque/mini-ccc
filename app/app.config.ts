@@ -6,7 +6,7 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        base: 'font-mono uppercase tracking-[0.12em] text-[0.7rem] rounded-none',
+        base: 'font-mono uppercase tracking-[0.12em] text-[0.7rem] rounded-none min-h-8',
       },
     },
     input: {

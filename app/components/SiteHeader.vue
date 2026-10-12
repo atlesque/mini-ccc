@@ -19,7 +19,6 @@ function isActive(to: string) {
       <NuxtLink to="/" class="flex items-center gap-2.5 text-xl font-medium tracking-tight" aria-label="Mini CCC home">
         <BrandMark />
         <span>mini <strong class="font-semibold">CCC</strong></span>
-        <span class="ml-1 hidden font-mono text-[0.625rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase sm:inline">// v2</span>
       </NuxtLink>
 
       <nav aria-label="Main navigation" class="max-md:order-3 max-md:-mx-1 max-md:w-full max-md:overflow-x-auto">

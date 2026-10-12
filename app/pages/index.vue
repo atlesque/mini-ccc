@@ -20,10 +20,10 @@ const stats = [
 ];
 
 const destinations = [
-  { to: '/schedule', index: '01', label: 'Plan the day', title: 'Schedule', description: 'Twelve hours from 10:00 to 22:00, with room left to wander.', accent: 'lime', icon: 'i-lucide-calendar-clock' },
-  { to: '/builds', index: '02', label: 'Make something', title: 'Builds', description: 'Tiny electronics projects with big enough ideas.', accent: 'blue', icon: 'i-lucide-cpu' },
-  { to: '/cocktails', index: '03', label: 'Take a break', title: 'Cocktails', description: 'Club-Mate serves for staying bright and curious.', accent: 'orange', icon: 'i-lucide-martini' },
-  { to: '/videos', index: '04', label: 'Watch together', title: 'Videos', description: 'A short list of rabbit holes worth sharing.', accent: 'pink', icon: 'i-lucide-tv-minimal-play' },
+  { to: '/schedule', index: '01', label: 'Agenda', title: 'Schedule', description: 'The agenda from 10:00 to 22:00.', accent: 'lime', icon: 'i-lucide-calendar-clock' },
+  { to: '/builds', index: '02', label: 'Catalogue', title: 'Builds', description: 'Electronics projects with parts lists and costs.', accent: 'blue', icon: 'i-lucide-cpu' },
+  { to: '/cocktails', index: '03', label: 'Bar', title: 'Cocktails', description: 'Club-Mate recipes and a shopping list.', accent: 'orange', icon: 'i-lucide-martini' },
+  { to: '/videos', index: '04', label: 'Watch list', title: 'Videos', description: 'YouTube videos to watch together.', accent: 'pink', icon: 'i-lucide-tv-minimal-play' },
 ];
 
 const featured = [...projects]
@@ -33,7 +33,7 @@ const featured = [...projects]
 
 const statusLine = computed(() => {
   if (slot.value === null && next.value) return { label: 'Doors open', value: formatSlot(next.value.start) };
-  if (slot.value === null) return { label: 'Off air', value: 'See you at 10:00' };
+  if (slot.value === null) return { label: 'Closed', value: 'Opens at 10:00' };
   return { label: 'On air now', value: current.value?.label ?? 'Open time' };
 });
 </script>
@@ -52,7 +52,7 @@ const statusLine = computed(() => {
           <span class="glow-text block animate-[flicker_7s_steps(1)_infinite]">CCC</span>
         </h1>
         <p class="mt-8 max-w-xl text-lg leading-relaxed text-[var(--ink-soft)] md:text-xl">
-          A tiny home conference for friends, prototypes and wonderfully unnecessary electronics. Make, watch, mix and move at your own pace.
+          A one-day home hacker conference: small electronics builds, Club-Mate cocktails and videos.
         </p>
         <div class="mt-10 flex flex-wrap gap-3">
           <UButton to="/schedule" label="See the agenda" trailing-icon="i-lucide-arrow-right" size="xl" />
@@ -122,17 +122,14 @@ const statusLine = computed(() => {
     <SignalTicker />
 
     <!-- Destinations -->
-    <section class="shell pt-20" aria-labelledby="destinations-title">
-      <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
-        <h2 id="destinations-title" class="display-title text-4xl md:text-5xl">Pick a<br><span class="glow-text">frequency.</span></h2>
-        <p class="max-w-sm text-[var(--ink-soft)]">Four channels, one long day. Drift between them whenever the room changes mood.</p>
-      </div>
+    <section class="shell pt-16" aria-labelledby="destinations-title">
+      <h2 id="destinations-title" class="sr-only">Sections</h2>
       <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
         <NuxtLink
           v-for="destination in destinations"
           :key="destination.to"
           :to="destination.to"
-          class="hud hud-interactive group relative flex min-h-72 flex-col p-6"
+          class="hud hud-interactive group relative flex min-h-56 flex-col p-6 max-sm:min-h-0 max-sm:p-5"
           :class="`accent-${destination.accent}`"
         >
           <span class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -144,7 +141,7 @@ const statusLine = computed(() => {
             </span>
             <UIcon name="i-lucide-arrow-up-right" class="size-5 text-[var(--ink-soft)] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]" />
           </div>
-          <div class="mt-auto pt-10">
+          <div class="mt-auto pt-10 max-sm:pt-5">
             <p class="eyebrow mb-3">{{ destination.index }} · {{ destination.label }}</p>
             <h3 class="text-3xl font-semibold tracking-tight">{{ destination.title }}</h3>
             <p class="mt-2 text-[var(--ink-soft)]">{{ destination.description }}</p>
@@ -158,7 +155,7 @@ const statusLine = computed(() => {
       <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p class="eyebrow mb-4" style="--accent: var(--signal-blue)">On the bench</p>
-          <h2 id="featured-title" class="display-title text-4xl md:text-5xl">Featured<br><span class="glow-text" style="--accent: var(--signal-blue)">builds.</span></h2>
+          <h2 id="featured-title" class="display-title text-4xl md:text-5xl">Featured <span class="glow-text" style="--accent: var(--signal-blue)">builds</span></h2>
         </div>
         <UButton to="/builds" :label="`All ${projects.length} builds`" trailing-icon="i-lucide-arrow-right" color="neutral" variant="outline" />
       </div>

@@ -20,7 +20,7 @@ function onClick() {
     :variant="saved ? 'soft' : 'ghost'"
     :aria-pressed="saved"
     :aria-label="saved ? `Remove ${projectName} from favorites` : `Favorite ${projectName}`"
-    :size="compact ? 'sm' : 'md'"
+    size="md"
     @click.prevent="onClick"
   >
     <UIcon

@@ -150,7 +150,7 @@ body {
 @layer components {
   .shell {
     width: 100%;
-    max-width: 88rem;
+    max-width: 76rem;
     margin-inline: auto;
     padding-inline: clamp(1rem, 4vw, 2.75rem);
   }

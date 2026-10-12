@@ -44,7 +44,7 @@ const countLabel = computed(() => (selected.value.length === 0
 <template>
   <div>
     <PageHero eyebrow="Bar · 03" title="Things to" title-accent="make and sip." accent="orange">
-      Club-Mate serves for staying bright and curious, with and without alcohol. Pick a few and the shopping list writes itself.
+      Club-Mate drinks, with and without alcohol. Add a few to get a shopping list.
     </PageHero>
 
     <section class="shell">
@@ -54,7 +54,7 @@ const countLabel = computed(() => (selected.value.length === 0
           v-for="option in filters"
           :key="option.value"
           :label="option.label"
-          size="sm"
+          size="md"
           :color="filter === option.value ? 'primary' : 'neutral'"
           :variant="filter === option.value ? 'solid' : 'outline'"
           :aria-pressed="filter === option.value"
@@ -108,8 +108,8 @@ const countLabel = computed(() => (selected.value.length === 0
             <p class="mt-3 text-[var(--ink-soft)]" aria-live="polite">{{ countLabel }}</p>
           </div>
           <div class="flex gap-2">
-            <UButton label="Select all" variant="outline" color="neutral" size="sm" :disabled="selected.length === cocktails.length" @click="selected = cocktails.map((c) => c.number)" />
-            <UButton label="Deselect all" variant="outline" color="neutral" size="sm" :disabled="selected.length === 0" @click="selected = []" />
+            <UButton label="Select all" variant="outline" color="neutral" size="md" :disabled="selected.length === cocktails.length" @click="selected = cocktails.map((c) => c.number)" />
+            <UButton label="Deselect all" variant="outline" color="neutral" size="md" :disabled="selected.length === 0" @click="selected = []" />
           </div>
         </div>
         <p v-if="shoppingList.length === 0" class="mt-8 text-[var(--ink-soft)]">Choose cocktails above to build your ingredient list.</p>

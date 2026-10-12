@@ -100,7 +100,8 @@ useSeoMeta({
                 icon="i-lucide-external-link"
                 color="neutral"
                 variant="ghost"
-                size="xs"
+                size="sm"
+                class="min-w-8 justify-center"
                 :aria-label="`Buy ${item.name}`"
               />
               <span v-else class="font-mono text-[0.625rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase">workshop</span>
@@ -115,10 +116,7 @@ useSeoMeta({
     </section>
 
     <section class="shell">
-      <div class="hud flex flex-wrap items-center justify-between gap-6 p-8 md:p-10">
-        <h2 class="display-title text-3xl md:text-4xl">Find the next<br><span class="glow-text">rabbit hole.</span></h2>
-        <UButton to="/builds" label="Back to all builds" leading-icon="i-lucide-arrow-left" size="lg" />
-      </div>
+      <UButton to="/builds" label="Back to all builds" leading-icon="i-lucide-arrow-left" size="lg" />
     </section>
   </div>
 </template>

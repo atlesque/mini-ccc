@@ -50,7 +50,6 @@ function exportFavorites() {
 <template>
   <div>
     <PageHero eyebrow="Catalogue · 02" title="The build" title-accent="list." accent="blue">
-      Tiny electronics projects with big enough ideas. Every build comes with a parts list, a rough budget and somewhere to start.
       <template #aside>
         <dl class="hud grid grid-cols-2 gap-px bg-[var(--hairline)] font-mono text-xs uppercase">
           <div class="bg-[var(--panel-raised)] px-5 py-4">
@@ -83,7 +82,7 @@ function exportFavorites() {
             :label="filter.label"
             :color="active === filter.value ? 'primary' : 'neutral'"
             :variant="active === filter.value ? 'solid' : 'outline'"
-            size="sm"
+            size="md"
             :aria-pressed="active === filter.value"
             @click="active = filter.value"
           />

@@ -21,7 +21,6 @@ function exportAgenda() {
 <template>
   <div>
     <PageHero eyebrow="Agenda · 01" title="Make room for" title-accent="good ideas.">
-      Twelve hours, seven blocks, and plenty of open time between them. The agenda is fixed; export it to keep a copy.
       <template #actions>
         <UButton label="Export .txt" trailing-icon="i-lucide-download" @click="exportAgenda" />
       </template>
@@ -51,15 +50,15 @@ function exportAgenda() {
           <li
             v-for="block in agenda"
             :key="block.label"
-            class="hud hud-interactive absolute inset-x-0 overflow-hidden px-4 py-3"
+            class="hud hud-interactive absolute inset-x-0 overflow-hidden px-4 py-3 max-sm:px-3 max-sm:py-2"
             :class="`accent-${block.accent}`"
             :style="{ top: `calc(${(block.start / SLOT_COUNT) * 100}% + 3px)`, height: `calc(${(block.duration / SLOT_COUNT) * 100}% - 6px)` }"
           >
             <div class="absolute inset-y-0 left-0 w-1 bg-[var(--accent)] shadow-[0_0_14px_var(--accent)]" aria-hidden="true" />
-            <div class="flex items-center gap-3 pl-2">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-0.5 pl-2">
               <UIcon :name="block.icon" class="size-4 shrink-0 text-[var(--accent)]" />
               <strong class="font-semibold tracking-tight">{{ block.label }}</strong>
-              <span class="ml-auto font-mono text-[0.6875rem] text-[var(--ink-soft)]">{{ formatSlot(block.start) }}—{{ formatSlot(block.start + block.duration) }}</span>
+              <span class="ml-auto font-mono text-[0.6875rem] text-[var(--ink-soft)] max-sm:ml-7 max-sm:basis-full">{{ formatSlot(block.start) }}—{{ formatSlot(block.start + block.duration) }}</span>
             </div>
           </li>
           <li
