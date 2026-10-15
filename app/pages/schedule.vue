@@ -3,13 +3,12 @@ import { SLOT_COUNT, agenda, agendaAsText, formatSlot } from '~/data/schedule';
 
 useSeoMeta({
   title: 'Schedule',
-  description: 'View and export the Mini CCC agenda.',
+  description: 'The agenda of the 2026 edition of Mini CCC.',
   ogTitle: 'Schedule — Mini CCC',
-  ogDescription: 'View and export the Mini CCC agenda.',
+  ogDescription: 'The agenda of the 2026 edition of Mini CCC.',
 });
 
 const toast = useToast();
-const { slot, clock } = useNow();
 const hours = Array.from({ length: SLOT_COUNT / 2 + 1 }, (_, index) => index * 2);
 
 function exportAgenda() {
@@ -20,7 +19,8 @@ function exportAgenda() {
 
 <template>
   <div>
-    <PageHero eyebrow="Agenda · 01" title="Make room for" title-accent="good ideas.">
+    <PageHero eyebrow="Agenda · 2026 edition" title="That was the" title-accent="2026 agenda.">
+      This is how the day ran. The 2026 edition has passed, see you next year.
       <template #actions>
         <UButton label="Export .txt" trailing-icon="i-lucide-download" @click="exportAgenda" />
       </template>
@@ -60,15 +60,6 @@ function exportAgenda() {
               <strong class="font-semibold tracking-tight">{{ block.label }}</strong>
               <span class="ml-auto font-mono text-[0.6875rem] text-[var(--ink-soft)] max-sm:ml-7 max-sm:basis-full">{{ formatSlot(block.start) }}—{{ formatSlot(block.start + block.duration) }}</span>
             </div>
-          </li>
-          <li
-            v-if="slot !== null"
-            aria-hidden="true"
-            class="pointer-events-none absolute inset-x-0 z-10 flex items-center gap-2"
-            :style="{ top: `${(slot / SLOT_COUNT) * 100}%` }"
-          >
-            <span class="-translate-y-1/2 bg-[var(--acid)] px-1.5 py-0.5 font-mono text-[0.625rem] font-semibold text-black">NOW {{ clock }}</span>
-            <span class="h-px flex-1 -translate-y-1/2 bg-[var(--acid)] shadow-[0_0_10px_var(--acid)]" />
           </li>
         </ol>
       </div>

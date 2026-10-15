@@ -3,7 +3,7 @@
     <div class="shell flex flex-wrap items-center justify-between gap-4 py-8 font-mono text-[0.6875rem] tracking-[0.14em] text-[var(--ink-soft)] uppercase">
       <div class="flex items-center gap-3">
         <span class="status-dot" aria-hidden="true" />
-        <span>Mini CCC</span>
+        <span>Mini CCC 2026 · See you next year</span>
       </div>
       <div class="flex flex-wrap items-center gap-x-5">
         <NuxtLink to="/schedule" class="py-2 hover:text-[var(--acid)]">Schedule</NuxtLink>

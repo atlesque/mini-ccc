@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { agenda, formatSlot } from '~/data/schedule';
 
-const items = [...agenda].sort((a, b) => a.start - b.start).map((block) => `${formatSlot(block.start)} ${block.label}`);
+const items: string[] = [...agenda].sort((a, b) => a.start - b.start).map((block) => `${formatSlot(block.start)} ${block.label}`);
+items.push('2026 edition complete', 'See you next year');
 </script>
 
 <template>
