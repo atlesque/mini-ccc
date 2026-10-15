@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { cocktails, videos } from '~/data/content';
 import { projects } from '~/data/projects';
-import { SLOT_COUNT, agenda, formatSlot } from '~/data/schedule';
+import { agenda, formatSlot } from '~/data/schedule';
 
 useSeoMeta({
-  title: 'Mini CCC — tiny builds, big signal',
-  description: 'A tiny home conference for making, watching, mixing, and moving at your own pace.',
-  ogTitle: 'Mini CCC — tiny builds, big signal',
-  ogDescription: 'A tiny home conference for making, watching, mixing, and moving at your own pace.',
+  title: 'Mini CCC — that’s a wrap for 2026',
+  description: 'The 2026 edition of Mini CCC has passed. Browse the builds, cocktails and videos, and see you next year.',
+  ogTitle: 'Mini CCC — that’s a wrap for 2026',
+  ogDescription: 'The 2026 edition of Mini CCC has passed. Browse the builds, cocktails and videos, and see you next year.',
 });
-
-const { slot, current, next, clock } = useNow();
 
 const stats = [
   { label: 'Builds', value: projects.length, to: '/builds' },
@@ -20,7 +18,7 @@ const stats = [
 ];
 
 const destinations = [
-  { to: '/schedule', index: '01', label: 'Agenda', title: 'Schedule', description: 'The agenda from 10:00 to 22:00.', accent: 'lime', icon: 'i-lucide-calendar-clock' },
+  { to: '/schedule', index: '01', label: 'Archive', title: 'Schedule', description: 'How the 2026 day ran, from 10:00 to 22:00.', accent: 'lime', icon: 'i-lucide-calendar-clock' },
   { to: '/builds', index: '02', label: 'Catalogue', title: 'Builds', description: 'Electronics projects with parts lists and costs.', accent: 'blue', icon: 'i-lucide-cpu' },
   { to: '/cocktails', index: '03', label: 'Bar', title: 'Cocktails', description: 'Club-Mate recipes and a shopping list.', accent: 'orange', icon: 'i-lucide-martini' },
   { to: '/videos', index: '04', label: 'Watch list', title: 'Videos', description: 'YouTube videos to watch together.', accent: 'pink', icon: 'i-lucide-tv-minimal-play' },
@@ -30,12 +28,6 @@ const featured = [...projects]
   .filter((project) => project.featuredRank !== undefined)
   .sort((a, b) => a.featuredRank! - b.featuredRank!)
   .slice(0, 4);
-
-const statusLine = computed(() => {
-  if (slot.value === null && next.value) return { label: 'Doors open', value: formatSlot(next.value.start) };
-  if (slot.value === null) return { label: 'Closed', value: 'Opens at 10:00' };
-  return { label: 'On air now', value: current.value?.label ?? 'Open time' };
-});
 </script>
 
 <template>
@@ -46,38 +38,39 @@ const statusLine = computed(() => {
       <SignalRings class="absolute top-1/2 right-[-10rem] -z-10 hidden w-[44rem] -translate-y-1/2 opacity-60 lg:block" />
 
       <div>
-        <p class="eyebrow mb-8">Home hacker conference · {{ formatSlot(0) }}—{{ formatSlot(SLOT_COUNT) }}</p>
+        <p class="eyebrow mb-8">2026 edition · That’s a wrap</p>
         <h1 class="display-title text-[clamp(4.5rem,15vw,11.5rem)] leading-[0.8]">
           <span class="block">mini</span>
           <span class="glow-text block animate-[flicker_7s_steps(1)_infinite]">CCC</span>
         </h1>
         <p class="mt-8 max-w-xl text-lg leading-relaxed text-[var(--ink-soft)] md:text-xl">
-          A one-day home hacker conference: small electronics builds, Club-Mate cocktails and videos.
+          The 2026 edition has passed. Thanks for building, mixing and watching along.
+          <strong class="font-semibold text-[var(--ink)]">See you next year.</strong>
         </p>
         <div class="mt-10 flex flex-wrap gap-3">
-          <UButton to="/schedule" label="See the agenda" trailing-icon="i-lucide-arrow-right" size="xl" />
-          <UButton to="/builds" label="Browse builds" color="neutral" variant="outline" size="xl" />
+          <UButton to="/builds" label="Browse the builds" trailing-icon="i-lucide-arrow-right" size="xl" />
+          <UButton to="/schedule" label="Look back at the agenda" color="neutral" variant="outline" size="xl" />
         </div>
       </div>
 
       <!-- Signal console -->
-      <aside class="hud accent-lime relative overflow-hidden" aria-label="Event status">
+      <aside class="hud accent-lime relative overflow-hidden" aria-label="2026 edition recap">
         <div class="scan-sweep" aria-hidden="true" />
         <div class="flex items-center justify-between border-b border-[var(--hairline)] px-5 py-3 font-mono text-[0.625rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase">
-          <span class="flex items-center gap-2"><span class="status-dot" aria-hidden="true" /> Signal console</span>
+          <span class="flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--ink-soft)]" aria-hidden="true" /> Signal off</span>
           <span>CH-26</span>
         </div>
 
         <div class="grid grid-cols-[auto_minmax(0,1fr)] items-end gap-6 px-5 pt-6 pb-5">
           <div>
-            <p class="font-mono text-[0.625rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase">Local time</p>
-            <p class="mt-1 font-mono text-4xl tabular-nums md:text-5xl">{{ clock }}</p>
+            <p class="font-mono text-[0.625rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase">Edition</p>
+            <p class="mt-1 font-mono text-4xl tabular-nums md:text-5xl">2026</p>
           </div>
           <div class="min-w-0 text-right">
-            <p class="font-mono text-[0.625rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase">{{ statusLine.label }}</p>
-            <p class="glow-text mt-1 truncate text-xl font-semibold">{{ statusLine.value }}</p>
-            <p v-if="next && slot !== null" class="mt-1 truncate font-mono text-[0.6875rem] text-[var(--ink-soft)]">
-              Next: {{ next.label }} · {{ formatSlot(next.start) }}
+            <p class="font-mono text-[0.625rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase">Broadcast ended</p>
+            <p class="glow-text mt-1 truncate text-xl font-semibold">See you next year</p>
+            <p class="mt-1 truncate font-mono text-[0.6875rem] text-[var(--ink-soft)]">
+              Next transmission: 2027
             </p>
           </div>
         </div>
@@ -97,12 +90,6 @@ const statusLine = computed(() => {
               <span class="sr-only">{{ block.label }}</span>
               <span class="absolute inset-x-0 top-0 h-0.5 bg-[var(--accent)]" />
             </NuxtLink>
-            <span
-              v-if="slot !== null"
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-y-0 w-0.5 bg-[var(--ink)] shadow-[0_0_10px_var(--acid)]"
-              :style="{ left: `${(slot / SLOT_COUNT) * 100}%` }"
-            />
           </div>
           <div class="mt-2 flex justify-between font-mono text-[0.5625rem] text-[var(--ink-soft)]" aria-hidden="true">
             <span>10:00</span><span>13:00</span><span>16:00</span><span>19:00</span><span>22:00</span>
