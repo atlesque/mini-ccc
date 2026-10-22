@@ -36,6 +36,8 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      // Shared opt-in consent banner; loads analytics only after "Allow".
+      script: [{ src: 'https://tools.atlesque.dev/consent.js', defer: true }],
       meta: [
         { name: 'robots', content: 'index, follow' },
         { property: 'og:site_name', content: 'Mini CCC' },

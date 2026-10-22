@@ -10,6 +10,8 @@
         <NuxtLink to="/builds" class="py-2 hover:text-[var(--acid)]">Builds</NuxtLink>
         <NuxtLink to="/cocktails" class="py-2 hover:text-[var(--acid)]">Cocktails</NuxtLink>
         <NuxtLink to="/videos" class="py-2 hover:text-[var(--acid)]">Videos</NuxtLink>
+        <a href="https://tools.atlesque.dev/privacy" class="py-2 hover:text-[var(--acid)]">Privacy</a>
+        <button type="button" data-privacy-settings class="cursor-pointer py-2 uppercase hover:text-[var(--acid)]">Privacy settings</button>
       </div>
     </div>
   </footer>
